@@ -2,6 +2,7 @@
 
 var app = require('app');  // Module to control application life.
 var BrowserWindow = require('browser-window');  // Module to create native browser window.
+// var screen = require('screen');
 
 // Report crashes to our server.
 require('crash-reporter').start();
@@ -23,6 +24,9 @@ app.on('window-all-closed', function() {
 // This method will be called when Electron has done everything
 // initialization and ready for creating browser windows.
 app.on('ready', function() {
+  // var dispSize = screen.getPrimaryDisplay().size;
+  // console.log(size.width, size.height);
+
   // Create the browser window.
   mainWindow = new BrowserWindow({width: 1440, height: 600});
 

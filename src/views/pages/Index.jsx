@@ -8,63 +8,45 @@ import store from 'store';
 // import buttons from 'statics/src/views/components/buttons';
 // import forms from 'statics/src/views/components/forms';
 
+var styles = {
+	height: "90px",
+	width: "160px",
+	"backgroundColor": "#aaa"
+};
+
 class Index extends React.Component {
 	constructor(props){
 		super(props);
-// 		this._changeMessage = this._changeMessage.bind(this);
-// 		this._changeButtons = this._changeButtons.bind(this);
-// 		this._changeVerified = this._changeVerified.bind(this);
-//
-// 		this.state = {
-// 			isShowForm: stores.message.getState().isShowForm
-// ,			isEditable: stores.buttons.getState().isEditable
-// ,			editableMessageId: stores.buttons.getState().editableMessageId
-// ,			isVerified: stores.verified.getState().isVerified
-// ,			isDeviceRegisterd: stores.verified.getState().isDeviceRegisterd
-		// };
 	}
 
-// 	componentDidMount(){
-// 		stores.message.listen(this._changeMessage);
-// 		stores.buttons.listen(this._changeButtons);
-// 		stores.verified.listen(this._changeVerified);
-// 		if(!store.get('token')){
-// 			window.location.assign('/#/account/login');
-// 		}else{
-// 			actions.verified();
-// 		}
-// 	}
-//
-// 	componentDidUpdate(){
-// 		if(!this.state.isDeviceRegisterd){
-// 			window.location.assign('/#/device');
-// 		}
-// 	}
-//
-// 	_changeMessage(){
-// 		this.setState({
-// 			isShowForm: stores.message.getState().isShowForm
-// 		});
-// 	}
-//
-// 	_changeButtons(){
-// 		this.setState({
-// 			isEditable: stores.buttons.getState().isEditable
-// ,			editableMessageId: stores.buttons.getState().editableMessageId
-// 		});
-// 	}
-//
-// 	_changeVerified(){
-// 		this.setState({
-// 			isVerified: stores.verified.getState().isVerified
-// ,			isDeviceRegisterd: stores.verified.getState().isDeviceRegisterd
-// 		});
-// 	}
+	componentDidMount(){
+
+		// MediaStreamTrack
+    window.navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
+		window.navigator.getUserMedia({
+			video: true, audio: true
+		}, function success(localMediaStream){
+			var video = document.querySelector('video');
+			var url = window.URL.createObjectURL(localMediaStream);
+			console.log(url);
+			// video.src = window.URL.createObjectURL(localMediaStream);
+			video.play();
+
+			video.onloadedmetadata = function(e) {
+			  // Do something with the video here.
+				console.log(e);
+			};
+		}, function fail(err){
+			console.log(err);
+		});
+	}
 
 	render(){
+		console.log('render');
 		return (
 			<div>
 				Hello, JSX!
+				<video style={styles} src="https://mizcan.mizbering.jp/movies/main.mp4"></video>
 			</div>
 		);
 	}
