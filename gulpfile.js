@@ -31,10 +31,6 @@ var config = {
 	}
 };
 
-gulp.task('startElectron', shell.task([
-	'electron .'
-]));
-
 gulp.task('sass', function(){
 	return sass(config.src.client.sass + '/style.sass', {
 		compass: true
@@ -111,8 +107,7 @@ gulp.task('compile', [
 ]);
 
 gulp.task('default', [
-	'compile',
-	// 'startElectron'
+	'compile'
 ], function(){
 	gulp.watch([
 		config.src.client.views + '/*.jsx',
