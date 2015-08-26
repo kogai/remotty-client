@@ -1,0 +1,62 @@
+.form--wrap
+	z-index: 9999
+
+.form--wrap, .form--wrap__background
+	position: fixed
+	left: 0
+	top: 0
+	width: 100%
+	height: 100%
+
+.form--wrap__background
+	background: rgba(0, 0, 0, 0.5)
+	padding: 5%
+	+box-sizing(border-box)
+
+
+.form--wrap__body
+	width: 92%
+	margin: 4%
+	padding: 4%
+	background-color: #fff
+	position: fixed
+	left: 0
+	top: 0
+	+box-sizing(border-box)
+
+.form--list
+	li
+		padding: 10px
+		text-align: center
+		label, input, .form--list__input
+			+inline-block
+		label
+			width: 40%
+			text-align: left
+		input
+			width: 50%
+			padding: 10px
+			border: 1px solid #ddd
+		.errorlist
+			color: $color-red
+			margin-top: 5px
+			li
+				padding: 0
+				font-size: 12px
+				text-align: left
+
+.form--list__input
+	width: 50%
+	padding: 10px
+
+.form--list__submit
+	margin-top: 20px
+	text-align: center
+
+.form--list__message
+	display: block
+	font-size: 14px
+	line-height: 1.5
+	padding: 10px
+	margin-bottom: 10px
+	background-color: #eee

@@ -1,0 +1,100 @@
+
+// 溝なしのグリッド
+
+=colum( $columNum, $columWidth )
+	+box-sizing(border-box)
+	&.ss-#{ $columNum }
+		width: $columWidth
+
+.l-colum-10
+	+colum( 1, 10% )
+	+colum( 9, 90% )
+
+.l-colum-9
+	+colum( 1, 11% )
+
+.l-colum-6
+	+colum( 1, 16.5% )
+	+colum( 2, 33% )
+	+colum( 3, 49.5% )
+	+colum( 4, 66% )
+	+colum( 5, 82.5% )
+
+.l-colum-5
+	+colum( 1, 20% )
+
+.l-colum-4
+	+colum( 1, 25% )
+	+colum( 2, 50% )
+	+colum( 3, 75% )
+
+.l-colum-2
+	+colum( 1, 50% )
+
+
+
+// 溝付きのグリッド
+
+=gutter( $columCount, $columNum, $columWidth, $gutterWidth )
+	&.ss-#{ $columNum }
+		width: $columWidth
+		margin-right: $gutterWidth
+		&:nth-child( #{$columCount}n )
+			margin-right: 0
+		+last
+		&.nth-child-#{$columCount}
+			margin-right: 0
+		&.nth-child-#{$columCount * 2 }
+			margin-right: 0
+		&.nth-child-#{$columCount * 3 }
+			margin-right: 0
+		&.nth-child-#{$columCount * 4 }
+			margin-right: 0
+		&.nth-child-#{$columCount * 5 }
+			margin-right: 0
+	&.ss-img
+		img
+			display: block
+			max-width: 100%
+			height: auto
+
+
+.l-gutter-9
+	+gutter( 9, 1, 10%, 1% )
+	+gutter( 9, 8, 87%, 1% )
+
+.l-gutter-8
+	+gutter( 8, 1, 9%, 4% )
+
+.l-gutter-7
+	+gutter( 7, 1, 10%, 5% )
+	+gutter( 7, 2, 25%, 5% )
+	+gutter( 7, 3, 40%, 5% )
+	+gutter( 7, 4, 55%, 5% )
+	+gutter( 7, 5, 70%, 5% )
+	+gutter( 7, 6, 85%, 5% )
+
+.l-gutter-6
+	+gutter( 6, 1, 15%, 2% )
+	+gutter( 6, 2, 32%, 2% )
+	+gutter( 6, 3, 49%, 2% )
+	+gutter( 6, 4, 66%, 2% )
+	+gutter( 6, 5, 83%, 2% )
+
+.l-gutter-5
+	+gutter( 5, 1, 16%, 5% )
+	+gutter( 5, 2, 37%, 5% )
+	+gutter( 5, 3, 58%, 5% )
+	+gutter( 5, 4, 79%, 5% )
+
+.l-gutter-4
+	+gutter( 4, 1, 22%, 4% )
+	+gutter( 4, 2, 48%, 4% )
+	+gutter( 4, 3, 74%, 4% )
+
+.l-gutter-3
+	+gutter( 3, 1, 32%, 2% )
+	+gutter( 3, 2, 66%, 2% )
+
+.l-gutter-2
+	+gutter( 2, 1, 48%, 4% )

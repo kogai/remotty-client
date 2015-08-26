@@ -1,0 +1,122 @@
+.l-wrap
+	+width($width)
+	margin-left: auto
+	margin-right: auto
+	@media screen and(max-width: $break_phone)
+		padding: 2%
+
+.l-body
+	position: relative
+
+.l-center
+	text-align: center
+	display: block
+	margin: auto
+
+.l-ta-left
+	text-align: left
+
+.l-ta-right
+	text-align: right
+
+.l-clr
+	+clear
+
+.l-left
+	+floatL
+	display: block
+
+.l-right
+	+floatR
+	display: block
+
+.l-left-always
+	float: left
+	display: block
+
+.l-right-always
+	float: right
+	display: block
+
+.l-table
+	display: table
+	width: 100%
+
+.l-table-cell
+	display: table-cell
+	&.ss-middle
+		vertical-align: middle
+
+.l-par
+	margin-bottom: 30px
+
+.l-par-border
+	border-top: 3px solid $color--main
+	padding-top: 20px
+	margin-top: 20px
+	margin-bottom: 30px
+	&.ss-small
+		padding-top: 0
+		margin-bottom: 10px
+
+.l-db
+	display: block
+
+.l-idb
+	+inline-block
+
+.l-pr
+	position: relative
+
+
+// margins
+
+@for $i from 1 through 10
+	.l-mt-#{ $i * 5 }
+		margin-top: #{ $i * 5 }px
+
+@for $i from 1 through 10
+	.l-mb-#{ $i * 5 }
+		margin-bottom: #{ $i * 5 }px
+
+@for $i from 1 through 10
+	.l-ml-#{ $i * 5 }
+		margin-left: #{ $i * 5 }px
+
+@for $i from 1 through 10
+	.l-mr-#{ $i * 5 }
+		margin-right: #{ $i * 5 }px
+
+@for $i from 1 through 10
+	.l-mlr-#{ $i * 5 }
+		margin-left: #{ $i * 5 }px
+		margin-right: #{ $i * 5 }px
+
+
+// paddings
+
+@for $i from 1 through 10
+	.l-pt-#{ $i * 5 }
+		padding-top: #{ $i * 5 }px
+
+@for $i from 1 through 10
+	.l-pb-#{ $i * 5 }
+		padding-bottom: #{ $i * 5 }px
+
+@for $i from 1 through 10
+	.l-pl-#{ $i * 5 }
+		padding-left: #{ $i * 5 }px
+
+@for $i from 1 through 10
+	.l-pr-#{ $i * 5 }
+		padding-right: #{ $i * 5 }px
+
+@for $i from 1 through 10
+	.l-plr-#{ $i * 5 }
+		padding-left: #{ $i * 5 }px
+		padding-right: #{ $i * 5 }px
+
+@for $i from 1 through 10
+	.l-ptb-#{ $i * 5 }
+		padding-top: #{ $i * 5 }px
+		padding-bottom: #{ $i * 5 }px

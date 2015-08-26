@@ -1,0 +1,74 @@
+@charset "utf-8"
+
+//タイポグラフィ
+$font: 14px
+$line: 2
+$fontfamily: "ヒラギノ角ゴ Pro W5", "メイリオ", Meiryo, "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif, "ＭＳ Ｐゴシック", "MS Pゴシック", Osaka
+
+// 色設計
+$color-base: #333344
+$color--main: #53C7F2
+$color--main__strong: #3995B7
+
+$color-red: #d14839
+$color-blue: #28a7e1
+$color-green: #bbc10e
+$color-yellow: #ffd800
+$color--gray: #7c7c7c
+$color--gray__weak: #eee
+$color--gray__strong: #aaa
+
+// レイアウト
+$width: 960px
+$break_phone: 780px
+
+// 動的演出
+$anim: 0.3s
+$opc: 0.7
+
+// リンク
+$link: "/public/images"
+
+=anim($sec)
+	-webkit-transition: $sec
+	-moz-transition: $sec
+	-ms-transition: $sec
+	-o-transition: $sec
+	transition: $sec
+
+=clear
+	zoom: 1
+	min-height: 1%
+	&:after
+		content: "."
+		display: block
+		height: 0
+		font-size: 0
+		clear: both
+		visibility: hidden
+
+=reset
+	color: $mainC
+	text-align: left
+	float: none
+	font-family: $fontfamily
+	font-size: 14px
+	line-height: 2
+
+=floatL
+	float: left
+
+=floatR
+	float: right
+
+=width($width)
+	width: $width
+	+box-sizing(border-box)
+	@media screen and(max-width: $break_phone)
+		width: 100%
+
+=last
+	&:last-child
+		margin-right: 0
+	&.last-child
+		margin-right: 0
