@@ -1,8 +1,8 @@
 'use babel';
 
 import React from 'react';
-import Router from 'react-router';
-import { Route, HashLocation } from 'react-router';
+// import Router from 'react-router';
+// import { Route, HashLocation } from 'react-router';
 
 /*
 import Handler from './Handler.jsx';
@@ -33,3 +33,8 @@ router.run(function(Root, state){
 	React.render(<Root params={ state.params } />, document.body);
 });
 */
+
+React.render(
+	<h1>hello, react!</h1>,
+	document.getElementById('react')
+);

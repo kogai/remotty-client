@@ -4,7 +4,6 @@ var gulp = require('gulp');
 var newer = require('gulp-newer');
 var objectAssign = require('object-assign');
 
-var babel = require('gulp-babel');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
@@ -13,6 +12,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var sass = require('gulp-ruby-sass');
 
 var pngmin = require('gulp-pngmin');
+var shell = require('gulp-shell');
 
 var config = {
 	env: 'development',
@@ -30,6 +30,10 @@ var config = {
 		images: './public/images'
 	}
 };
+
+gulp.task('startElectron', shell.task([
+	'electron .'
+]));
 
 gulp.task('sass', function(){
 	return sass(config.src.client.sass + '/style.sass', {
@@ -107,7 +111,8 @@ gulp.task('compile', [
 ]);
 
 gulp.task('default', [
-	'compile'
+	'compile',
+	// 'startElectron'
 ], function(){
 	gulp.watch([
 		config.src.client.views + '/*.jsx',
