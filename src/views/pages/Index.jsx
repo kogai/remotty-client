@@ -24,12 +24,14 @@ class Index extends React.Component {
 		// MediaStreamTrack
     window.navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
 		window.navigator.getUserMedia({
-			video: true, audio: true
+			video: true, audio: false
 		}, function success(localMediaStream){
 			var video = document.querySelector('video');
 			var url = window.URL.createObjectURL(localMediaStream);
+
 			console.log(url);
-			// video.src = window.URL.createObjectURL(localMediaStream);
+
+			video.src = url;
 			video.play();
 
 			video.onloadedmetadata = function(e) {
@@ -42,11 +44,10 @@ class Index extends React.Component {
 	}
 
 	render(){
-		console.log('render');
 		return (
 			<div>
 				Hello, JSX!
-				<video style={styles} src="https://mizcan.mizbering.jp/movies/main.mp4"></video>
+				<video style={ styles } src="https://mizcan.mizbering.jp/movies/main.mp4"></video>
 			</div>
 		);
 	}

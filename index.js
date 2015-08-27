@@ -4,6 +4,8 @@ var app = require('app');  // Module to control application life.
 var BrowserWindow = require('browser-window');  // Module to create native browser window.
 // var screen = require('screen');
 
+var server = require('./server.js');
+
 // Report crashes to our server.
 require('crash-reporter').start();
 require('electron-reload')(__dirname, {
@@ -24,6 +26,10 @@ app.on('window-all-closed', function() {
 // This method will be called when Electron has done everything
 // initialization and ready for creating browser windows.
 app.on('ready', function() {
+  server.listen(4444, function() {
+  	console.log('Express server listening on port 4444');
+  });
+
   // var dispSize = screen.getPrimaryDisplay().size;
   // console.log(size.width, size.height);
 
@@ -31,7 +37,7 @@ app.on('ready', function() {
   mainWindow = new BrowserWindow({width: 1440, height: 600});
 
   // and load the index.html of the app.
-  mainWindow.loadUrl('file://' + __dirname + '/index.html');
+  mainWindow.loadUrl('http://localhost:4444/');
 
   // Open the devtools.
   mainWindow.openDevTools();
