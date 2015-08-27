@@ -3,6 +3,8 @@
 import React from 'react';
 import store from 'store';
 
+import UserState from 'src/classes/UserState';
+
 // import stores from 'statics/src/views/stores';
 // import actions from 'statics/src/views/actions';
 // import buttons from 'statics/src/views/components/buttons';
@@ -20,23 +22,14 @@ class Index extends React.Component {
 	}
 
 	componentDidMount(){
-		var constraints = {
-			video: true
-		};
+		let userState = new UserState({
+			navigator: window.navigator
+		});
 
-		// MediaStreamTrack
-		navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
-		navigator.getUserMedia(constraints, function success(localMediaStream){
-		  var videoTracks = localMediaStream.getVideoTracks();
-			console.log(videoTracks);
-		  console.log('Using video device: ' + videoTracks[0].label);
-			// localMediaStream.addTrack();
-
+		userState.allowVideo(function(err, localMediaStream){
+			/*
 			var video = document.querySelector('video');
 			var url = window.URL.createObjectURL(localMediaStream);
-
-			console.log(url);
-
 			video.src = url;
 			video.play();
 
@@ -44,8 +37,7 @@ class Index extends React.Component {
 				// Do something with the video here.
 				console.log(e);
 			};
-		}, function fail(err){
-			console.log(err);
+			*/
 		});
 	}
 
@@ -53,7 +45,7 @@ class Index extends React.Component {
 		return (
 			<div>
 				Hello, JSX!
-				<video style={ styles } src="https://mizcan.mizbering.jp/movies/main.mp4"></video>
+				<video style={ styles }></video>
 			</div>
 		);
 	}

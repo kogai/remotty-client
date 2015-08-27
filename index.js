@@ -26,7 +26,7 @@ app.on('window-all-closed', function() {
 
 // This method will be called when Electron has done everything
 // initialization and ready for creating browser windows.
-app.commandLine.appendSwitch('--enable-usermedia-screen-capturing');
+// app.commandLine.appendSwitch('--enable-usermedia-screen-capturing');
 app.on('ready', function() {
   server.listen(4444, function() {
   	console.log('Express server listening on port 4444');

@@ -13,6 +13,7 @@ var sass = require('gulp-ruby-sass');
 
 var pngmin = require('gulp-pngmin');
 var shell = require('gulp-shell');
+var babel = require('gulp-babel');
 
 var config = {
 	env: 'development',
@@ -30,6 +31,19 @@ var config = {
 		images: './public/images'
 	}
 };
+
+gulp.task('babel', function(){
+	return gulp.src([
+		config.src.client.root + '/*.js',
+		config.src.client.root + '/**/*.js',
+		config.src.client.root + '/**/**/*.js'
+	])
+	.pipe(babel())
+	.pipe(gulp.dest(config.dest.root))
+	.on('error', function(err){
+		return console.log(err);
+	});
+});
 
 gulp.task('sass', function(){
 	return sass(config.src.client.sass + '/style.sass', {
@@ -103,6 +117,7 @@ gulp.task('compile', [
 	'copy'
 ,	'pngmin'
 ,	'browserify'
+,	'babel'
 ,	'sass'
 ]);
 
@@ -115,8 +130,11 @@ gulp.task('default', [
 		config.src.client.views + '/**/**/*.jsx',
 		config.src.client.views + '/*.js',
 		config.src.client.views + '/**/*.js',
-		config.src.client.views + '/**/**/*.js'
-	], ['browserify']);
+		config.src.client.views + '/**/**/*.js',
+		config.src.client.root + '/*.js',
+		config.src.client.root + '/**/*.js',
+		config.src.client.root + '/**/**/*.js'
+	], ['browserify', 'babel']);
 
 	gulp.watch([
 		config.src.client.images + '/*',
