@@ -3,6 +3,7 @@
 var app = require('app');  // Module to control application life.
 var BrowserWindow = require('browser-window');  // Module to create native browser window.
 // var screen = require('screen');
+var dialog = require('dialog');
 
 var server = require('./server.js');
 
@@ -25,6 +26,7 @@ app.on('window-all-closed', function() {
 
 // This method will be called when Electron has done everything
 // initialization and ready for creating browser windows.
+app.commandLine.appendSwitch('--enable-usermedia-screen-capturing');
 app.on('ready', function() {
   server.listen(4444, function() {
   	console.log('Express server listening on port 4444');
@@ -34,13 +36,26 @@ app.on('ready', function() {
   // console.log(size.width, size.height);
 
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1440, height: 600});
+  mainWindow = new BrowserWindow({
+    width: 1440,
+    height: 600,
+    // frame: false
+    // kiosk: true
+    // fullscreen: true
+  });
+  // console.log(dialog.showOpenDialog({ properties: [ 'openFile', 'openDirectory', 'multiSelections' ]}));
 
   // and load the index.html of the app.
   mainWindow.loadUrl('http://localhost:4444/');
 
   // Open the devtools.
   mainWindow.openDevTools();
+
+  console.log(mainWindow.webContents);
+  mainWindow.on('app-command', function(e, cmd){
+    console.log(e);
+    console.log(cmd);
+  });
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {

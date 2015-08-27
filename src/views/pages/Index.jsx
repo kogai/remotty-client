@@ -24,7 +24,16 @@ class Index extends React.Component {
 		// MediaStreamTrack
     window.navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
 		window.navigator.getUserMedia({
-			video: true, audio: false
+			// video: true, audio: false
+	    audio: false,
+	    video: {
+	      mandatory: {
+	        chromeMediaSource: 'screen',
+	        maxWidth: 1280,
+	        maxHeight: 720
+	      },
+	      optional: []
+	    }
 		}, function success(localMediaStream){
 			var video = document.querySelector('video');
 			var url = window.URL.createObjectURL(localMediaStream);
