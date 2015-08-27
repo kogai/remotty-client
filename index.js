@@ -39,6 +39,7 @@ app.on('ready', function() {
   mainWindow = new BrowserWindow({
     width: 1440,
     height: 600,
+    // transparent: true
     // frame: false
     // kiosk: true
     // fullscreen: true
@@ -47,11 +48,13 @@ app.on('ready', function() {
 
   // and load the index.html of the app.
   mainWindow.loadUrl('http://localhost:4444/');
+  // mainWindow.loadUrl('http://webrtc.github.io/samples/src/content/getusermedia/gum/');
 
   // Open the devtools.
   mainWindow.openDevTools();
 
-  console.log(mainWindow.webContents);
+  mainWindow.setMenuBarVisibility(true);
+
   mainWindow.on('app-command', function(e, cmd){
     console.log(e);
     console.log(cmd);

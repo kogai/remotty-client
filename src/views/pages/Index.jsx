@@ -9,8 +9,8 @@ import store from 'store';
 // import forms from 'statics/src/views/components/forms';
 
 var styles = {
-	height: "90px",
-	width: "160px",
+	height: "400px",
+	width: "1000px",
 	"backgroundColor": "#aaa"
 };
 
@@ -20,21 +20,18 @@ class Index extends React.Component {
 	}
 
 	componentDidMount(){
+		var constraints = {
+			video: true
+		};
 
 		// MediaStreamTrack
-    window.navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
-		window.navigator.getUserMedia({
-			// video: true, audio: false
-	    audio: false,
-	    video: {
-	      mandatory: {
-	        chromeMediaSource: 'screen',
-	        maxWidth: 1280,
-	        maxHeight: 720
-	      },
-	      optional: []
-	    }
-		}, function success(localMediaStream){
+		navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
+		navigator.getUserMedia(constraints, function success(localMediaStream){
+		  var videoTracks = localMediaStream.getVideoTracks();
+			console.log(videoTracks);
+		  console.log('Using video device: ' + videoTracks[0].label);
+			// localMediaStream.addTrack();
+
 			var video = document.querySelector('video');
 			var url = window.URL.createObjectURL(localMediaStream);
 
@@ -44,7 +41,7 @@ class Index extends React.Component {
 			video.play();
 
 			video.onloadedmetadata = function(e) {
-			  // Do something with the video here.
+				// Do something with the video here.
 				console.log(e);
 			};
 		}, function fail(err){
