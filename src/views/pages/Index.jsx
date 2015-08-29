@@ -47,7 +47,7 @@ class Index extends React.Component {
 
 		});
 		*/
-		
+
 		userState.allowLocate((error, position) => {
 			if(error) return console.log(error);
 
@@ -64,10 +64,10 @@ class Index extends React.Component {
 	}
 
 	render(){
+				// <img />
+				// <video style={ styles }></video>
 		return (
 			<div>
-				<img />
-				<video style={ styles }></video>
 			</div>
 		);
 	}

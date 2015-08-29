@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title Hello World!
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')
+    link(rel='stylesheet', href='/style.css')
+  body
+    .container
+      section.teams
+        ul.teams__list
+          -for(var i = 0; i < 5; i++)
+            -var className = 'teams__list__icon'
+            -if (i === 0) className = 'teams__list__icon--active'
+            li(class='#{className}').icon
+              img(src="/images/icon.png", alt="").icon__img
+              span.icon__name team[#{ i }]
+
+      section.members
+        ul.members__list
+          -for(var i = 0; i < 5; i++)
+            li members[ #{ i } ]
+
+      section.map map
+    //- <script src="/bundle.js"></script>

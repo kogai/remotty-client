@@ -1,10 +1,17 @@
-.section--main
-	position: relative
-	left: 0
-	z-index: 9999
-	height: 100%
-	background-color: #fff
-	+anim(0.1s)
-	&.is-active
-		left: 90%
-		+box-shadow(-4px 0px 8px rgba(0, 0, 0, 0.3))
+.container
+	display: flex
+	flex-direction: row
+
+section
+	&.teams, &.members, &.map
+		box-sizing: border-box
+		padding: 15px
+
+	&.teams
+		width: 10%
+
+	&.members
+		width: 20%
+
+	&.map
+		width: 70%

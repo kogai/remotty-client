@@ -15,6 +15,9 @@ var pngmin = require('gulp-pngmin');
 var shell = require('gulp-shell');
 var babel = require('gulp-babel');
 
+var util = require('gulp-util');
+var jade = require('gulp-jade');
+
 var config = {
 	env: 'development',
 	src: {
@@ -32,6 +35,18 @@ var config = {
 		images: './public/images'
 	}
 };
+
+gulp.task('jade', function() {
+  return gulp.src([
+		config.src.client.root + '/*.jade'
+	])
+  .pipe(jade())
+  .on('error', function(err){
+    util.beep();
+    console.log(err);
+  })
+  .pipe(gulp.dest(config.dest.root));
+});
 
 gulp.task('babel', function(){
 	return gulp.src([
@@ -88,7 +103,7 @@ gulp.task('browserify', function(){
 
 gulp.task('copy', function(){
 	return gulp.src([
-		config.src.client.root + '/index.html',
+		config.src.client.images + '/*.png',
 		config.src.client.root + '/credential.js'
 	])
 	.pipe(gulp.dest(config.dest.root));
@@ -117,6 +132,7 @@ gulp.task('compile', [
 ,	'browserify'
 ,	'babel'
 ,	'sass'
+,	'jade'
 ]);
 
 gulp.task('default', [
@@ -145,6 +161,15 @@ gulp.task('default', [
 		config.src.client.sass + '/**/*',
 		config.src.client.sass + '/**/**/*'
 	], ['sass']);
+
+	gulp.watch([
+		config.src.client.root + '/*.jade'
+	], ['jade']);
+
+	gulp.watch([
+		config.src.client.root + '/credential.js',
+		config.src.client.images + '/*.png'
+	], ['copy']);
 });
 
 gulp.task('build', [
