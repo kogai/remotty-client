@@ -2,16 +2,19 @@
 
 var app = require('app');  // Module to control application life.
 var BrowserWindow = require('browser-window');  // Module to create native browser window.
-// var screen = require('screen');
-var dialog = require('dialog');
 
+var dialog = require('dialog');
 var server = require('./server.js');
 
 // Report crashes to our server.
 require('crash-reporter').start();
+
+console.log(__dirname);
+/*
 require('electron-reload')(__dirname, {
   electron: require('electron-prebuilt')
 });
+*/
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the javascript object is GCed.
