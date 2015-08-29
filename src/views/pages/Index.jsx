@@ -6,6 +6,7 @@ import store from 'store';
 import UserState from 'src/classes/UserState';
 import MemberList from 'src/views/components/MemberList.jsx';
 import Team from 'src/views/components/Team.jsx';
+import Map from 'src/views/components/Map.jsx';
 
 // import stores from 'statics/src/views/stores';
 // import actions from 'statics/src/views/actions';
@@ -50,19 +51,6 @@ class Index extends React.Component {
 		});
 		*/
 
-		userState.allowLocate((error, position) => {
-			if(error) return console.log(error);
-
-			userState.analizeArea({
-				latitude: position.coords.latitude,
-				longitude: position.coords.longitude
-			}, (err, results) => {
-				if(err){
-					return console.log(err);
-				}
-				console.log(results);
-			});
-		});
 	}
 
 	render(){
@@ -74,7 +62,7 @@ class Index extends React.Component {
 				<Team />
 				<MemberList />
 			</section>
-			<section className="map">map</section>
+			<Map />
 		</div>
 		);
 	}
