@@ -10,5 +10,5 @@ npm install
 
 ```bash
 # electronインスタンスの立ち上げ&ファイルコンパイル&監視開始
-gulp
+gulp && npm start
 ```
