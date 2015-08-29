@@ -40,7 +40,9 @@ gulp.task('jade', function() {
   return gulp.src([
 		config.src.client.root + '/*.jade'
 	])
-  .pipe(jade())
+  .pipe(jade({
+		pretty: true
+	}))
   .on('error', function(err){
     util.beep();
     console.log(err);

@@ -9,13 +9,12 @@
   background-color: #fff
   border-radius: 3px 0 0 3px
 
-.select__current__button
+.select__current__button--default
   width: 20%
   background-color: $color__main
   color: #fff
   border-radius: 0 3px 3px 0
   @extend .fa
-  @extend .fa-chevron-down
   position: relative
   &:hover
     background-color: $color__main--dark
@@ -27,6 +26,14 @@
     margin-left: -8px
     margin-top: -8px
 
+.select__current__button
+  @extend .select__current__button--default
+  @extend .fa-chevron-down
+
+.select__current__button--active
+  @extend .select__current__button--default
+  @extend .fa-chevron-up
+
 .select__options
   border-radius: 3px
   color: $color_base
@@ -34,6 +41,11 @@
   box-shadow: 0px 0px 6px $color__base--dark
   position: relative
   z-index: 9999
+  display: none
+
+.select__options--active
+  @extend .select__options
+  display: block
 
 .select__options__option
   padding: 10px

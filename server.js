@@ -21,7 +21,7 @@ server.use(routes);
 
 module.exports = server;
 
-if(true){
+if(false){
   server.listen(4444, function() {
   	console.log('Express server listening on port 4444');
   });

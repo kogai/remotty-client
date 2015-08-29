@@ -4,6 +4,8 @@ import React from 'react';
 import store from 'store';
 
 import UserState from 'src/classes/UserState';
+import MemberList from 'src/views/components/MemberList.jsx';
+import Team from 'src/views/components/Team.jsx';
 
 // import stores from 'statics/src/views/stores';
 // import actions from 'statics/src/views/actions';
@@ -67,8 +69,13 @@ class Index extends React.Component {
 				// <img />
 				// <video style={ styles }></video>
 		return (
-			<div>
-			</div>
+		<div className="container">
+			<section className="members">
+				<Team />
+				<MemberList />
+			</section>
+			<section className="map">map</section>
+		</div>
 		);
 	}
 }
