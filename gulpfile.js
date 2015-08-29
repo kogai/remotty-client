@@ -28,6 +28,7 @@ var config = {
 	},
 	dest: {
 		root: './public',
+		global: './global',
 		images: './public/images'
 	}
 };
@@ -39,7 +40,7 @@ gulp.task('babel', function(){
 		config.src.client.root + '/**/**/*.js'
 	])
 	.pipe(babel())
-	.pipe(gulp.dest(config.dest.root))
+	.pipe(gulp.dest(config.dest.global))
 	.on('error', function(err){
 		return console.log(err);
 	});
@@ -85,16 +86,13 @@ gulp.task('browserify', function(){
 	.pipe(gulp.dest(config.dest.root));
 });
 
-gulp.task('copy-client', function(){
+gulp.task('copy', function(){
 	return gulp.src([
-		config.src.client.root + '/index.html'
+		config.src.client.root + '/index.html',
+		config.src.client.root + '/credential.js'
 	])
 	.pipe(gulp.dest(config.dest.root));
 });
-
-gulp.task('copy', [
-	'copy-client'
-]);
 
 gulp.task('pngmin', function () {
 	return (

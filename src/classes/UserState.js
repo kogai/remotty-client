@@ -1,5 +1,4 @@
-import geocoder from 'geocoder';
-import { geocoderKey } from '../../credential.js'
+import request from 'superagent';
 
 class UserState {
 	constructor(opts = {}){
@@ -59,18 +58,19 @@ class UserState {
 		return imgURL;
 	}
 
+
 	/***
 	座標から県名を抽出する
 	***/
-	analizeState(latlong, done){
-		geocoder.reverseGeocode(latlong.latitude, latlong.longitude, function ( err, data ) {
-		  if(error){
+	analizeArea(latlong, done){
+		request
+		.get('/area')
+		.query(latlong)
+		.end((error, ret) => {
+			if(error){
 				return done(error);
 			}
-			done(null, data.results);
-		}, {
-		  key: geocoderKey,
-		  result_type: ['administrative_area_level_1']
+			done(null, ret.body);
 		});
 	}
 }
