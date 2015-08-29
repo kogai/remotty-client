@@ -8,11 +8,12 @@
 
 .teams__list__icon
 	width: 80%
-	min-width: 50px
 	margin: auto
 	margin-bottom: 15px
+	+opacity(0.5)
 	&:last-child
 		margin-bottom: 0px
 
 .teams__list__icon--active
 	@extend .teams__list__icon
+	+opacity(1)

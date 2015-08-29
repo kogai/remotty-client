@@ -16,9 +16,14 @@ html
               span.icon__name team[#{ i }]
 
       section.members
+        h1 チームのメンバー
         ul.members__list
           -for(var i = 0; i < 5; i++)
-            li members[ #{ i } ]
+            -var className = 'members__list__icon'
+            -if (i === 0) className = 'members__list__icon--active'
+            li(class='#{className}').icon
+              img(src="/images/icon.png", alt="").icon__img
+              span.icon__name team[#{ i }]
 
       section.map map
     //- <script src="/bundle.js"></script>
