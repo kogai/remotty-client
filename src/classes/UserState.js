@@ -1,3 +1,6 @@
+import geocoder from 'geocoder';
+import { geocoderKey } from '../../credential.js'
+
 class UserState {
 	constructor(opts = {}){
     this.navigator = opts.navigator;
@@ -59,8 +62,16 @@ class UserState {
 	/***
 	座標から県名を抽出する
 	***/
-	analizeState(latitude, longitude){
-
+	analizeState(latlong, done){
+		geocoder.reverseGeocode(latlong.latitude, latlong.longitude, function ( err, data ) {
+		  if(error){
+				return done(error);
+			}
+			done(null, data.results);
+		}, {
+		  key: geocoderKey,
+		  result_type: ['administrative_area_level_1']
+		});
 	}
 }
 

@@ -25,7 +25,7 @@ class Index extends React.Component {
 		let userState = new UserState({
 			navigator: window.navigator
 		});
-
+		/*
 		userState.allowVideo(function(err, localMediaStream){
 			if(err){
 				return console.log(err);
@@ -45,6 +45,7 @@ class Index extends React.Component {
 			};
 
 		});
+		*/
 		userState.allowLocate((error, position) => {
 			if(error) return console.log(error);
 			console.log(position);
