@@ -27,7 +27,7 @@ class Index extends React.Component {
 		});
 
 		userState.allowVideo(function(err, localMediaStream){
-			/*
+			// /*
 			var video = document.querySelector('video');
 			var url = window.URL.createObjectURL(localMediaStream);
 			video.src = url;
@@ -35,9 +35,13 @@ class Index extends React.Component {
 
 			video.onloadedmetadata = function(e) {
 				// Do something with the video here.
-				console.log(e);
+				// console.log(e);
 			};
-			*/
+			// */
+		});
+		userState.allowLocate((error, position) => {
+			if(error) return console.log(error);
+			console.log(position);
 		});
 	}
 

@@ -4,28 +4,20 @@ class UserState {
 	}
 
 	allowVideo(done){
-		const constraints = { video: true };
+		this.navigator.getUserMedia = this.navigator.getUserMedia || this.navigator.webkitGetUserMedia;
 
-		let getUserMedia = (constraints, success, fail) => {
-      if(this.navigator.getUserMedia){
-        return this.navigator.getUserMedia(constraints, success, fail);
-      }
-      this.navigator.webkitGetUserMedia(constraints, success, fail);
-    };
-
-		function success(localMediaStream){
-      done(null, localMediaStream);
-		}
-
-		function fail(){
-      done(err);
-		}
-
-		getUserMedia(constraints, success, fail);
+		this.navigator.getUserMedia(
+			{ video: true },
+			(localMediaStream) => done(null, localMediaStream),
+			(error) => done(error)
+		)
 	}
 
-	allowLocate(){
-
+	allowLocate(done){
+    this.navigator.geolocation.getCurrentPosition(
+			(position ) =>  done(null, position),
+			(error) => done(error)
+		);
 	}
 }
 
