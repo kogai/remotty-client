@@ -27,26 +27,23 @@ class Index extends React.Component {
 		});
 
 		userState.allowVideo(function(err, localMediaStream){
-			// /*
+			if(err){
+				return console.log(err);
+			}
+
 			var video = document.querySelector('video');
 			var url = window.URL.createObjectURL(localMediaStream);
 			video.src = url;
 			video.play();
 
 			video.onloadedmetadata = function(e) {
-				console.log(e);
-				var canvas = document.querySelector('canvas');
-				var ctx = canvas.getContext('2d');
-				canvas.width = 640;
-				canvas.height = 480;
-
 				setInterval( () => {
-					// ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
-			    ctx.drawImage(video, 0, 0, 640, 480, 0, 0, 640, 480);
-			    // var dataURL = canvas.toDataURL('image/jpeg');
+					var imgURL = userState.takePhoto(video);
+					var img = document.querySelector('img');
+					img.src = imgURL;
 				}, 1000);
 			};
-			// */
+
 		});
 		userState.allowLocate((error, position) => {
 			if(error) return console.log(error);
@@ -57,7 +54,7 @@ class Index extends React.Component {
 	render(){
 		return (
 			<div>
-				<canvas />
+				<img />
 				<video style={ styles }></video>
 			</div>
 		);

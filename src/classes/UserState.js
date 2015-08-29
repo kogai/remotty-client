@@ -29,8 +29,31 @@ class UserState {
 	/***
 	動画から画像を生成する
 	***/
-	takePhoto(mediaStream){
+	takePhoto(srcVideo){
+		var canvas = document.createElement('canvas');
+		var context = canvas.getContext('2d');
 
+		canvas.width = 640;
+		canvas.height = 480;
+
+		var src = {
+			x: 0,
+			y: 0,
+			width: 640,
+			height: 480
+		};
+
+		var dest = {
+			x: 0,
+			y: 0,
+			width: 640,
+			height: 480
+		};
+
+		context.drawImage(srcVideo, src.x, src.y, src.width, src.height, dest.x, dest.y, dest.width, dest.height);
+
+		var imgURL = canvas.toDataURL('image/jpeg');
+		return imgURL;
 	}
 
 	/***
