@@ -1,3 +1,6 @@
+.select
+  position: relative
+
 .select__current
   color: $color__base
   display: flex
@@ -39,9 +42,10 @@
   color: $color_base
   background-color: #fff
   box-shadow: 0px 0px 6px $color__base--dark
-  position: relative
+  position: absolute
   z-index: 9999
   display: none
+  width: 100%
 
 .select__options--active
   @extend .select__options

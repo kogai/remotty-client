@@ -10,7 +10,7 @@ class Team extends React.Component {
     var selectables = ['electron', 'atom', 'github'];
 		return (
       <article className="members__paragraph">
-        <h1 className="members__title">チーム: electron</h1>
+        <h1 className="members__title">チーム: { selectables[0] }</h1>
 				<SelectList selectables={ selectables }/>
       </article>
 		);

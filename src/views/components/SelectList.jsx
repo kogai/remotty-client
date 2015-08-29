@@ -4,14 +4,23 @@ class SelectList extends React.Component {
 	constructor(props){
 		super(props);
 		this.toggleSelectList = this.toggleSelectList.bind(this);
+		this.selectList = this.selectList.bind(this);
 		this.state = {
-			isSelectListOpen: false
+			isSelectListOpen: false,
+			selected: '選択してください'
 		};
 	}
 
 	toggleSelectList(){
 		this.setState({
 			isSelectListOpen: !this.state.isSelectListOpen
+		});
+	}
+
+	selectList(e, ref, sam){
+		this.setState({
+			isSelectListOpen: false,
+			selected: e.target.textContent
 		});
 	}
 
@@ -27,7 +36,14 @@ class SelectList extends React.Component {
 
 		let dummyOptions = selectables.map((selectable, index)=>{
 			return (
-				<li className="select__options__option" key={ index }>{ selectable }</li>
+				<li
+					className="select__options__option"
+					re={ selectable }
+					onClick={ this.selectList }
+					key={ index }
+				>
+					{ selectable }
+				</li>
 			)
 		});
 
@@ -39,7 +55,7 @@ class SelectList extends React.Component {
 			selectCurrentButtonClassName = 'select__current__button';
 			selectListClassName = 'select__options';
 		}
-		
+
 		return (
 			<div>
 				<select style={ optionsStyle }>
@@ -47,7 +63,7 @@ class SelectList extends React.Component {
 				</select>
 				<div className="select">
 					<div className="select__current">
-						<div className="select__current__input">{ selectables[0] }</div>
+						<div className="select__current__input">{ this.state.selected }</div>
 						<div className={ selectCurrentButtonClassName } onClick={ this.toggleSelectList }></div>
 					</div>
 					<ul className={ selectListClassName }>
