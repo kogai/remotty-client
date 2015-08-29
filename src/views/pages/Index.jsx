@@ -11,8 +11,8 @@ import UserState from 'src/classes/UserState';
 // import forms from 'statics/src/views/components/forms';
 
 var styles = {
-	height: "400px",
-	width: "1000px",
+	height: "480px",
+	width: "640px",
 	"backgroundColor": "#aaa"
 };
 
@@ -34,8 +34,17 @@ class Index extends React.Component {
 			video.play();
 
 			video.onloadedmetadata = function(e) {
-				// Do something with the video here.
-				// console.log(e);
+				console.log(e);
+				var canvas = document.querySelector('canvas');
+				var ctx = canvas.getContext('2d');
+				canvas.width = 640;
+				canvas.height = 480;
+
+				setInterval( () => {
+					// ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+			    ctx.drawImage(video, 0, 0, 640, 480, 0, 0, 640, 480);
+			    // var dataURL = canvas.toDataURL('image/jpeg');
+				}, 1000);
 			};
 			// */
 		});
@@ -48,7 +57,7 @@ class Index extends React.Component {
 	render(){
 		return (
 			<div>
-				Hello, JSX!
+				<canvas />
 				<video style={ styles }></video>
 			</div>
 		);
