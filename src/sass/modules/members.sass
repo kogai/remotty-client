@@ -1,2 +1,29 @@
 .members
-  background-color: $color--gray__weak
+	background-color: $color__base
+	color: #fff
+
+.members__paragraph
+	margin-bottom: 30px
+
+.members__list
+	display: flex
+	flex-wrap: wrap
+
+.members__list__icon
+	width: 80%
+	max-width: 60px
+	margin-bottom: 10px
+	+opacity(0.5)
+
+.members__list__icon--active
+	@extend .members__list__icon
+	+opacity(1)
+
+.members__title
+	color: #fff
+	font-size: 16px
+	margin-bottom: 10px
+
+.members__title--with-list
+	@extend .members__title
+	margin-bottom: 4px

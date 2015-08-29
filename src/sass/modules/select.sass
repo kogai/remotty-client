@@ -1,0 +1,42 @@
+.select__current
+  color: $color__base
+  display: flex
+  flex-direction: row
+
+.select__current__input
+  width: 80%
+  padding: 10px
+  background-color: #fff
+  border-radius: 3px 0 0 3px
+
+.select__current__button
+  width: 20%
+  background-color: $color__main
+  color: #fff
+  border-radius: 0 3px 3px 0
+  @extend .fa
+  @extend .fa-chevron-down
+  position: relative
+  &:hover
+    background-color: $color__main--dark
+    cursor: pointer
+  &:before
+    position: absolute
+    top: 50%
+    left: 50%
+    margin-left: -8px
+    margin-top: -8px
+
+.select__options
+  border-radius: 3px
+  color: $color_base
+  background-color: #fff
+  box-shadow: 0px 0px 6px $color__base--dark
+  position: relative
+  z-index: 9999
+
+.select__options__option
+  padding: 10px
+  &:hover
+    background-color: $color__weak-glay
+    cursor: pointer

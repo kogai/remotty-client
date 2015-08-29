@@ -2,28 +2,36 @@ doctype html
 html
   head
     title Hello World!
-    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')
     link(rel='stylesheet', href='/style.css')
   body
     .container
-      section.teams
-        ul.teams__list
-          -for(var i = 0; i < 5; i++)
-            -var className = 'teams__list__icon'
-            -if (i === 0) className = 'teams__list__icon--active'
-            li(class='#{className}').icon
-              img(src="/images/icon.png", alt="").icon__img
-              span.icon__name team[#{ i }]
-
       section.members
-        h1 チームのメンバー
-        ul.members__list
-          -for(var i = 0; i < 5; i++)
-            -var className = 'members__list__icon'
-            -if (i === 0) className = 'members__list__icon--active'
-            li(class='#{className}').icon
-              img(src="/images/icon.png", alt="").icon__img
-              span.icon__name team[#{ i }]
+        article.members__paragraph
+          h1.members__title チーム: electron
+          -var teams = ['electron', 'atom', 'github']
+          select(style="display: none;")
+            -for(var i = 0; i < teams.length; i++)
+              option(value="#{teams[i]}") #{teams[i]}
+          .select
+            .select__current
+              .select__current__input
+                |#{teams[0]}
+              .select__current__button
+              
+            ul.select__options
+              -for(var i = 0; i < teams.length; i++)
+                li.select__options__option #{teams[i]}
+                
+
+        article.members__paragraph
+          h2.members__title--with-list チームのメンバー
+          ul.members__list
+            -for(var i = 0; i < 5; i++)
+              -var className = 'members__list__icon'
+              -if (i === 0) className = 'members__list__icon--active'
+              li(class='#{className}').icon
+                img(src="/images/icon.png", alt="").icon__img
+                span.icon__name メンバー/#{ i }
 
       section.map map
     //- <script src="/bundle.js"></script>
