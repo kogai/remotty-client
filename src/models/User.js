@@ -16,6 +16,7 @@ let UserSchema = new mongoose.Schema({
     }
   },
   password: String,
+  iconFileName: String,
   verifyToken: String,
   isVerify: Boolean,
 	teams: Array
@@ -72,6 +73,7 @@ UserSchema.pre('save', function(next) {
 			if(err){
 				done(err);
 			}
+			_user.password = hash;
 			done(null, hash);
 		});
 	});
