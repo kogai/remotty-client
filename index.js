@@ -3,9 +3,14 @@
 var app = require('app');  // Module to control application life.
 var BrowserWindow = require('browser-window');  // Module to create native browser window.
 
-console.log("start");
-
 var dialog = require('dialog');
+
+try{
+  var mongoose = require('mongoose');
+}catch(e){
+  // console.log(e);
+}
+
 var server = require('./server.js');
 
 // Report crashes to our server.

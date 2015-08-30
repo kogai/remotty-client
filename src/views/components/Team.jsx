@@ -23,10 +23,7 @@ class Team extends React.Component {
 	}
 
 	render(){
-    // var selectables = ['electron', 'atom', 'github'];
     var selectables = this.state.teams;
-		console.log(selectables);
-
 		return (
       <article className="members__paragraph">
         <h1 className="members__title">チーム: { selectables[0] }</h1>

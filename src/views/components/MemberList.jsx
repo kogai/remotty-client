@@ -1,6 +1,7 @@
 import React from 'react';
 
 import MemberIcon from './MemberIcon.jsx';
+import OwnIcon from './OwnIcon.jsx';
 import UserState from 'src/classes/UserState';
 
 import MemberAction from 'src/views/actions/MemberAction';
@@ -25,28 +26,6 @@ class MemberList extends React.Component {
 		});
 	}
 
-	// componentDidMount(){
-	// 	userState.allowVideo(function(err, localMediaStream){
-	// 		if(err){
-	// 			return console.log(err);
-	// 		}
-	// 		/*
-	// 		var video = document.querySelector('video');
-	// 		var url = window.URL.createObjectURL(localMediaStream);
-	// 		video.src = url;
-	// 		video.play();
-	//
-	// 		video.onloadedmetadata = function(e) {
-	// 			setInterval( () => {
-	// 				var imgURL = userState.takePhoto(video);
-	// 				var img = document.querySelector('img');
-	// 				img.src = imgURL;
-	// 			}, 1000);
-	// 		};
-	// 		*/
-	// 	});
-	// }
-
 	render(){
     var membersComponent = this.state.members.map((member, index)=>{
       return (
@@ -57,6 +36,8 @@ class MemberList extends React.Component {
         />
       );
     });
+
+		membersComponent.unshift(<OwnIcon />);
 
 		return (
       <article className="members__paragraph">
