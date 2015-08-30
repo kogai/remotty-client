@@ -8,6 +8,8 @@ import MemberList from 'src/views/components/MemberList.jsx';
 import Team from 'src/views/components/Team.jsx';
 import Map from 'src/views/components/Map.jsx';
 
+// import IDB from '../models/IDB';
+
 // import stores from 'statics/src/views/stores';
 // import actions from 'statics/src/views/actions';
 // import buttons from 'statics/src/views/components/buttons';

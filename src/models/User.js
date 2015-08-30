@@ -31,33 +31,6 @@ UserSchema.methods.comparePassword = function(candidatePassword, hashedPassword,
   });
 };
 
-/*
-UserSchema.pre('save', (next) => {
-	// 更新されたのが`teams`以外ならnext()
-	if(!this.isModified('teams')){
-		return next();
-	}
-
-	this.teams.forEach((team)=>{
-		let condition = {
-			name: team
-		};
-
-		Team.findOne(condition, (error, team) => {
-			if(error){
-				console.log(error);
-				return next();
-			}
-			if(team){
-
-			}
-		});
-	});
-
-	// Team
-});
-*/
-
 UserSchema.pre('save', function(next) {
 	var _user = this;
 
