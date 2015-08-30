@@ -12,7 +12,7 @@ class MemberList extends React.Component {
 			if(err){
 				return console.log(err);
 			}
-
+			/*
 			var video = document.querySelector('video');
 			var url = window.URL.createObjectURL(localMediaStream);
 			video.src = url;
@@ -25,6 +25,7 @@ class MemberList extends React.Component {
 					img.src = imgURL;
 				}, 1000);
 			};
+			*/
 		});
 	}
 
