@@ -8,13 +8,13 @@ import assign from 'object-assign';
 
 const CHANGE_EVENT = 'change';
 
-var _isKeycreated = false;
+// stores
+var _members = [];
 
 var MemberStore = assign({}, EventEmitter.prototype, {
 	getState(){
 		return {
-			isKeycreated: _isKeycreated
-,			isDeviceRegisterd: _isDeviceRegisterd
+			members: _members
 		};
 	},
 
@@ -28,12 +28,19 @@ var MemberStore = assign({}, EventEmitter.prototype, {
 });
 
 Dispatcher.register(function(action){
-	// switch(action.type){
-	// 	case Constants.DEVICE_START:
-	// 		_message = '準備中...';
-	// 		MemberStore.emitChange();
-	// 		break;
-	// }
+	switch(action.type){
+		case Constants.GET_MEMBERS:
+			_members = null;
+			return MemberStore.emitChange();
+
+		case Constants.GET_MEMBERS_SUCCESS:
+			_members = action.body;
+			return MemberStore.emitChange();
+
+		case Constants.GET_MEMBERS_ERROR:
+			_members = null;
+			return MemberStore.emitChange();
+	}
 });
 
 export default MemberStore;

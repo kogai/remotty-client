@@ -24,16 +24,6 @@ class Index extends React.Component {
 	}
 
 	componentDidMount(){
-
-		console.log(connection);
-
-		connection(window)
-		.then((transaction) => {
-			console.log(transaction);
-		})
-		.catch((error)=>{
-			console.log(error);
-		});
 	}
 
 	render(){

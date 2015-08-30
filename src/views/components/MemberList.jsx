@@ -2,27 +2,28 @@ import React from 'react';
 
 import MemberIcon from './MemberIcon.jsx';
 import UserState from 'src/classes/UserState';
-import { connection } from 'src/classes/Database';
-import { connection } from 'src/views/stores/member';
+
+import MemberAction from 'src/views/actions/MemberAction';
+import MemberStore from 'src/views/stores/MemberStore';
 
 let userState = new UserState({ navigator: window.navigator });
 
 class MemberList extends React.Component {
 	constructor(props){
 		super(props);
+		this.state = {
+			members: []
+		};
 	}
 
-	/*
 	componentDidMount(){
-		connection(window)
-		.then((database) => {
-			console.log(database);
-		})
-		.catch((error)=>{
-			console.log(error);
+		MemberAction.getMembers();
+		MemberStore.listen(()=>{
+			return this.setState({
+				members: MemberStore.getState().members
+			});
 		});
 	}
-	*/
 
 	// componentDidMount(){
 	// 	userState.allowVideo(function(err, localMediaStream){
@@ -49,7 +50,9 @@ class MemberList extends React.Component {
 	render(){
     var members = ['electron', 'atom', 'github'];
 
-    var membersComponent = members.map((member, index)=>{
+		console.log(this.state.members);
+
+    var membersComponent = this.state.members.map((member, index)=>{
       return (
         <MemberIcon
           name={ member }
@@ -58,8 +61,6 @@ class MemberList extends React.Component {
         />
       );
     });
-
-		console.log(this.props.value);
 
 		return (
       <article className="members__paragraph">

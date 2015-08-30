@@ -3,6 +3,8 @@
 import keymirror from 'keymirror';
 
 export default keymirror({
-	LOGIN_START: null
-, LOGIN_VERIFIED: null
+	GET_MEMBERS: null,
+	GET_MEMBERS_SUCCESS: null,
+	GET_MEMBERS_ERROR: null
+// , LOGIN_VERIFIED: null
 });

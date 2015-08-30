@@ -6,7 +6,9 @@ class User {
 	constructor(){
 
 		this.schema = {
-
+			name: String,
+			iconFilePath: String,
+			teams: Array
 		};
 	}
 }
