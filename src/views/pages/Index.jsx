@@ -7,6 +7,7 @@ import UserState from 'src/classes/UserState';
 import { connection } from 'src/classes/Database';
 
 import MemberList from 'src/views/components/MemberList.jsx';
+// import MemberListContainer from 'src/views/container/MemberListContainer.jsx';
 import Team from 'src/views/components/Team.jsx';
 import Map from 'src/views/components/Map.jsx';
 

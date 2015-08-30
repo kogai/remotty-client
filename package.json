@@ -12,6 +12,7 @@
     "express": "^4.13.3",
     "flux": "^2.0.3",
     "jade": "^1.11.0",
+    "keymirror": "^0.1.1",
     "log4js": "^0.6.26",
     "log4js-extend": "^0.1.2",
     "moment": "^2.10.3",

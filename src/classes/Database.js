@@ -103,7 +103,7 @@ export function connection(_window) {
       if(error){
         return reject(error);
       }
-      resolve(transaction);
+      resolve(db);
     });
   });
 };
