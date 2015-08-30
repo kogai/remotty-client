@@ -4,26 +4,35 @@ import React from 'react';
 import store from 'store';
 
 import UserState from 'src/classes/UserState';
+import { connection } from 'src/classes/Database';
+
 import MemberList from 'src/views/components/MemberList.jsx';
 import Team from 'src/views/components/Team.jsx';
 import Map from 'src/views/components/Map.jsx';
 
-// import IDB from '../models/IDB';
+// import { connection } from '../models/IDB';
 
 // import stores from 'statics/src/views/stores';
 // import actions from 'statics/src/views/actions';
 // import buttons from 'statics/src/views/components/buttons';
 // import forms from 'statics/src/views/components/forms';
 
-var styles = {
-	height: "480px",
-	width: "640px",
-	"backgroundColor": "#aaa"
-};
-
 class Index extends React.Component {
 	constructor(props){
 		super(props);
+	}
+
+	componentDidMount(){
+
+		console.log(connection);
+
+		connection(window)
+		.then((transaction) => {
+			console.log(transaction);
+		})
+		.catch((error)=>{
+			console.log(error);
+		});
 	}
 
 	render(){

@@ -12,29 +12,38 @@ class Database {
 
   _connect(done){
     //2.indexedDBを開く
-    var connection = indexedDB.open(this.IDB_Name, 1);
+    let connection = indexedDB.open(this.IDB_Name, 1);
 
     // Databaseの定義
-    connection.on('upgradeneeded', (event) => {
-      var db = event.target.result;
+    connection.addEventListener('upgradeneeded', (event) => {
+      let db = event.target.result;
 
-      var userCollection = db.createObjectStore("user", {
+      let userCollection = db.createObjectStore("user", {
         keyPath: "user_id"
       });
 
       this.userCollection = userCollection;
       this.connection = connection;
+
     });
 
-    connection.on('success', (event) => {
+    connection.addEventListener('success', (event) => {
       // オブジェクトストアを読み書き権限付きで使用することを宣言
-      var db = connection.result;
-      var transaction = db.transaction(["user"], "readwrite");
+      let db = connection.result;
+      let transaction = db.transaction(["user"], "readwrite");
       done(null, transaction);
     });
 
-    connection.on('error', (event) => {
+    connection.addEventListener('error', (event) => {
       done(event);
+    });
+  }
+
+  delete(databaseName){
+    var deleteRequest = this.indexedDB.deleteDatabase(databaseName);
+
+    deleteRequest.addEventListener('success', () => {
+      console.log(databaseName + ' deleted.');
     });
   }
 
