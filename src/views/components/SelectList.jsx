@@ -63,7 +63,7 @@ class SelectList extends React.Component {
 				</select>
 				<div className="select">
 					<div className="select__current">
-						<div className="select__current__input">{ this.state.selected }</div>
+						<div className="select__current__input" onClick={ this.toggleSelectList }>{ this.state.selected }</div>
 						<div className={ selectCurrentButtonClassName } onClick={ this.toggleSelectList }></div>
 					</div>
 					<ul className={ selectListClassName }>
