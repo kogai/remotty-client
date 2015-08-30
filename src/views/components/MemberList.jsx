@@ -48,10 +48,6 @@ class MemberList extends React.Component {
 	// }
 
 	render(){
-    var members = ['electron', 'atom', 'github'];
-
-		console.log(this.state.members);
-
     var membersComponent = this.state.members.map((member, index)=>{
       return (
         <MemberIcon

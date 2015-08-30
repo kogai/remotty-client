@@ -17,11 +17,13 @@ class SelectList extends React.Component {
 		});
 	}
 
-	selectList(e, ref, sam){
+	selectList(event){
+		let selected = event.target.textContent;
 		this.setState({
 			isSelectListOpen: false,
-			selected: e.target.textContent
+			selected: selected
 		});
+		this.props.onSelect(selected);
 	}
 
 	render(){
