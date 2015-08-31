@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 import { mongodb } from '../credential.js';
 
-/*
 let db = mongoose.createConnection(mongodb);
 
 let TeamSchema = new mongoose.Schema({
@@ -10,6 +9,4 @@ let TeamSchema = new mongoose.Schema({
 });
 
 let TeamModel = db.model('team', TeamSchema);
-*/
-let TeamModel;
 export default TeamModel = {};

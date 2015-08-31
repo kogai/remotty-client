@@ -5,13 +5,8 @@ var BrowserWindow = require('browser-window');  // Module to create native brows
 
 var dialog = require('dialog');
 
-try{
-  var mongoose = require('mongoose');
-}catch(e){
-  // console.log(e);
-}
-
 var server = require('./server.js');
+var mongoose = require('mongoose');
 
 // Report crashes to our server.
 require('crash-reporter').start();

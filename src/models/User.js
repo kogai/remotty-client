@@ -1,33 +1,4 @@
 import Promise from 'bluebird';
-import { typeCheck } from 'type-check';
-import { connection } from 'src/classes/Databases';
-
-class User {
-	constructor(){
-
-		this.schema = {
-			name: String,
-			iconFilePath: String,
-			teams: Array
-		};
-	}
-}
-
-export default User;
-
-export function UserModel(done){
-	connection(window)
-	.then((transaction)=>{
-
-	})
-	.catch((error)=>{
-
-	});
-	// return new User();
-}
-
-/*
-import Promise from 'bluebird';
 import bcrypt from 'bcrypt';
 import mongoose from 'mongoose';
 import { mongodb } from '../credential.js';
@@ -87,4 +58,3 @@ UserSchema.pre('save', function(next) {
 
 let UserModel = db.model('user', UserSchema);
 export default UserModel;
-*/
