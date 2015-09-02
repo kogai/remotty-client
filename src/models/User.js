@@ -19,7 +19,7 @@ let UserSchema = new mongoose.Schema({
   iconFileName: String,
   verifyToken: String,
   isVerify: Boolean,
-	teams: Array
+	team_ids: Array
 });
 
 UserSchema.methods.comparePassword = function(candidatePassword, hashedPassword, done) {

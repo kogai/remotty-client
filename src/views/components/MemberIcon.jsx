@@ -5,6 +5,10 @@ class MemberIcon extends React.Component {
 		super(props);
 	}
 
+	componentWillUnmount(){
+		console.log('componentWillUnmount in MemberIcon');
+	}
+
 	render(){
 		return (
 			<li className="members__list__icon icon">

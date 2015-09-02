@@ -1,36 +1,43 @@
 import React from 'react';
+import UserState from 'src/classes/UserState'
+
+const userState = new UserState({ navigator: window.navigator });
 
 class OwnIcon extends React.Component {
 	constructor(props){
 		super(props);
+		this.state = {
+			imgURL: '/images/icon.png'
+		}
 	}
 
-	// componentDidMount(){
-	// 	userState.allowVideo(function(err, localMediaStream){
-	// 		if(err){
-	// 			return console.log(err);
-	// 		}
-	// 		/*
-	// 		var video = document.querySelector('video');
-	// 		var url = window.URL.createObjectURL(localMediaStream);
-	// 		video.src = url;
-	// 		video.play();
-	//
-	// 		video.onloadedmetadata = function(e) {
-	// 			setInterval( () => {
-	// 				var imgURL = userState.takePhoto(video);
-	// 				var img = document.querySelector('img');
-	// 				img.src = imgURL;
-	// 			}, 1000);
-	// 		};
-	// 		*/
-	// 	});
-	// }
+	componentDidMount(){
+		const _self = this;
+		userState.allowVideo(function(err, localMediaStream){
+			if(err){
+				return console.log(err);
+			}
+
+			const video = document.createElement('video');
+			const videoURL = window.URL.createObjectURL(localMediaStream);
+			video.src = videoURL;
+			video.play();
+
+			video.onloadedmetadata = function(e) {
+				setInterval( () => {
+					const imgURL = userState.takePhoto(video);
+					_self.setState({
+						imgURL: imgURL
+					});
+				}, 3000);
+			};
+		});
+	}
 
 	render(){
 		return (
 			<li className="members__list__icon--active icon">
-        <img src={ this.props.img } alt={ "this.props.name" } className="icon__img" />
+        <img src={ this.state.imgURL } className="icon__img" />
         <span className="icon__name">{ "this.props.name" }</span>
       </li>
 		);

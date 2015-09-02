@@ -26,23 +26,28 @@ class MemberList extends React.Component {
 		});
 	}
 
+	componentWillUnmount(){
+		console.log("componentWillUnmount in MemberList");
+	}
+
 	render(){
     var membersComponent = this.state.members.map((member, index)=>{
       return (
         <MemberIcon
-          name={ member }
-          img="/images/icon.png"
-          key={ index }
+          name={ member.name }
+          img={ member.iconFileName }
+          key={ "membersComponent" + index }
         />
       );
     });
 
-		membersComponent.unshift(<OwnIcon />);
-
 		return (
       <article className="members__paragraph">
         <h2 className="members__title--with-list">チームのメンバー</h2>
-        <ul className="members__list">{ membersComponent }</ul>
+        <ul className="members__list">
+					<OwnIcon />
+					{ membersComponent }
+				</ul>
       </article>
     );
 	}

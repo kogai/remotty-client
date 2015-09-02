@@ -33,7 +33,7 @@ class SelectList extends React.Component {
 
 		let selectables = this.props.selectables;
 		let options = selectables.map((selectable, index)=>{
-			return <option value={ selectable } key={ index }>{ selectable }</option>
+			return <option value={ selectable } key={ "selectables" + index }>{ selectable }</option>
 		});
 
 		let dummyOptions = selectables.map((selectable, index)=>{
@@ -42,7 +42,7 @@ class SelectList extends React.Component {
 					className="select__options__option"
 					re={ selectable }
 					onClick={ this.selectList }
-					key={ index }
+					key={ "selectables-dummyOptions-" + index }
 				>
 					{ selectable }
 				</li>
