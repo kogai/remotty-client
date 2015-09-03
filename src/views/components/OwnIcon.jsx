@@ -1,5 +1,7 @@
 import React from 'react';
-import UserState from 'src/classes/UserState';
+
+import UserState from 'src/views/classes/UserState';
+import { snapshot } from 'src/views/classes/SnapShot';
 import config from 'src/views/config';
 
 const userState = new UserState({ navigator: window.navigator });
@@ -9,29 +11,19 @@ class OwnIcon extends React.Component {
 		super(props);
 		this.state = {
 			imgURL: '/images/icon.png'
-		}
+		};
 	}
 
 	componentDidMount(){
-		const _self = this;
-		userState.allowVideo(function(err, localMediaStream){
-			if(err){
-				return console.log(err);
-			}
-
-			const video = document.createElement('video');
-			const videoURL = window.URL.createObjectURL(localMediaStream);
-			video.src = videoURL;
-			video.play();
-
-			video.onloadedmetadata = function(e) {
-				setInterval( () => {
-					const imgURL = userState.takePhoto(video);
-					_self.setState({
-						imgURL: imgURL
-					});
-				}, config.snapInterval);
-			};
+		snapshot
+		.allowVideo()
+		.then((video)=>{
+			snapshot.start(video, ()=>{
+				/**
+				* ここにActionへの伝播処理を書く
+				*/
+				console.log('snapshot taked.');
+			})
 		});
 	}
 

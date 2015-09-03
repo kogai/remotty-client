@@ -2,7 +2,7 @@ import React from 'react';
 
 import MemberIcon from './MemberIcon.jsx';
 import OwnIcon from './OwnIcon.jsx';
-import UserState from 'src/classes/UserState';
+import UserState from 'src/views/classes/UserState';
 
 import MemberAction from 'src/views/actions/MemberAction';
 import MemberStore from 'src/views/stores/MemberStore';

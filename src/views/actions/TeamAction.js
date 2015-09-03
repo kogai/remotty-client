@@ -1,7 +1,7 @@
 import Dispatcher from 'src/views/Dispatcher.jsx';
 import Constants from 'src/views/Constants';
 
-import { connection } from 'src/classes/Database';
+import { connection } from 'src/views/classes/Database';
 
 export default {
 	getTeams(){

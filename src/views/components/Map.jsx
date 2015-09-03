@@ -1,8 +1,8 @@
 import React from 'react';
 import Promise from 'bluebird';
 
-import UserState from 'src/classes/UserState';
-import MapClass from 'src/classes/MapClass';
+import UserState from 'src/views/classes/UserState';
+import MapClass from 'src/views/classes/MapClass';
 
 let map;
 

@@ -4,7 +4,7 @@ import Promise from 'bluebird';
 
 import config from 'src/views/config';
 
-const TAKE_SNAP = 'TAKE_SNAP';
+const TAKE_SNAP_EVENT = 'TAKE_SNAP_EVENT';
 
 class SnapShot extends EventEmitter{
 
@@ -12,7 +12,8 @@ class SnapShot extends EventEmitter{
   * @constructor
   */
   constructor(){
-    this.intervalID;
+    super();
+    this.intervalID = null;
   }
 
   /**
@@ -20,10 +21,10 @@ class SnapShot extends EventEmitter{
    * @param {Function} [done] - 非同期処理完了後に呼び出すコールバック。引数がなければPromise化して返す
    */
 	allowVideo(done){
-    const _allowVideo = (done) =>{
-    	this.navigator.getUserMedia = this.navigator.getUserMedia || this.navigator.webkitGetUserMedia;
+    let _allowVideo = (done) =>{
+    	window.navigator.getUserMedia = window.navigator.getUserMedia || window.navigator.webkitGetUserMedia;
 
-      this.navigator.getUserMedia(
+      window.navigator.getUserMedia(
     		{ video: true },
     		(localMediaStream) => {
         	const video = document.createElement('video');
@@ -36,9 +37,9 @@ class SnapShot extends EventEmitter{
     }
 
     if(done){
-      _allowVideo(done);
+      return _allowVideo(done);
     }
-    return Promise.promisify(_allowVideo);
+    return Promise.promisify(_allowVideo)();
 	}
 
   /**
@@ -91,11 +92,11 @@ class SnapShot extends EventEmitter{
     video.play();
 
     this.emitableCallback = emitableCallback;
-    this.on(TAKE_SNAP, this.emitableCallback);
+    this.on(TAKE_SNAP_EVENT, this.emitableCallback);
 
     this.intervalID = setInterval(()=>{
 			const imgURL = this.takePhoto(video);
-      this.emit(TAKE_SNAP, imgURL);
+      this.emit(TAKE_SNAP_EVENT, imgURL);
     }, config.SNAP_INTERVAL);
   }
 
@@ -105,41 +106,13 @@ class SnapShot extends EventEmitter{
   stop(video){
     video.stop();
     clearInterval(this.intervalID);
-    this.removeListener(TAKE_SNAP, this.emitableCallback);
+    this.removeListener(TAKE_SNAP_EVENT, this.emitableCallback);
   }
+
 }
-
-
-/*
-	const video = document.createElement('video');
-	const videoURL = window.URL.createObjectURL(localMediaStream);
-	video.src = videoURL;
-	video.play();
-
-	video.onloadedmetadata = function(e) {
-		setInterval( () => {
-			const imgURL = userState.takePhoto(video);
-			_self.setState({
-				imgURL: imgURL
-			});
-		}, config.snapInterval);
-	};
-
-	emitChange(){
-		this.emit(CHANGE_EVENT);
-	},
-
-	listen(callback){
-		this.on(CHANGE_EVENT, callback);
-	}
-
-snapshot.on('register', callback);
-snapshot.on('deregister', callback);
-
-*/
 
 
 export default SnapShot;
-export function snapshot (opts = {}) {
-  return new SnapShot(opts);
-}
+
+const snapshot = new SnapShot();
+export { snapshot };

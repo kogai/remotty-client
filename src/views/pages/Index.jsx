@@ -3,8 +3,8 @@
 import React from 'react';
 import store from 'store';
 
-import UserState from 'src/classes/UserState';
-import { connection } from 'src/classes/Database';
+import UserState from 'src/views/classes/UserState';
+import { connection } from 'src/views/classes/Database';
 
 import MemberList from 'src/views/components/MemberList.jsx';
 // import MemberListContainer from 'src/views/container/MemberListContainer.jsx';
