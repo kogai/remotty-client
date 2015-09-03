@@ -1,22 +1,23 @@
-'use strict';
+require('babel/register');
 
-var gulp = require('gulp');
-var newer = require('gulp-newer');
-var objectAssign = require('object-assign');
+import gulp from 'gulp';
+import newer from 'gulp-newer';
+import objectAssign from 'object-assign';
 
-var browserify = require('browserify');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
-var sourcemaps = require('gulp-sourcemaps');
+import browserify from 'browserify';
+import source from 'vinyl-source-stream';
+import buffer from 'vinyl-buffer';
+import sourcemaps from 'gulp-sourcemaps';
 
-var sass = require('gulp-ruby-sass');
+import sass from 'gulp-ruby-sass';
 
-var pngmin = require('gulp-pngmin');
-var shell = require('gulp-shell');
-var babel = require('gulp-babel');
+import pngmin from 'gulp-pngmin';
+import shell from 'gulp-shell';
+import babel from 'gulp-babel';
 
-var util = require('gulp-util');
-var jade = require('gulp-jade');
+import util from 'gulp-util';
+import jade from 'gulp-jade';
+import runSequence from 'run-sequence';
 
 var config = {
 	env: 'development',
@@ -124,18 +125,25 @@ gulp.task('pngmin', function () {
 	);
 });
 
+gulp.task('runElectron', function(){
+  return gulp.src('*.js', { read: false })
+  .pipe(shell([
+    'npm start'
+  ]));
+});
+
 gulp.task('isProduction', function(){
 	config.env = 'production';
 });
 
-gulp.task('compile', [
-	'copy'
-,	'pngmin'
-,	'browserify'
-,	'babel'
-,	'sass'
-,	'jade'
-]);
+gulp.task('compile', function(done){
+  return runSequence(
+  	['copy', 'babel', 'sass', 'jade', 'pngmin'],
+    'browserify',
+    'runElectron',
+    done
+  );
+});
 
 gulp.task('default', [
 	'compile'
