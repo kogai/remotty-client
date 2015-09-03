@@ -1,23 +1,23 @@
 require('babel/register');
 
-import gulp from 'gulp';
-import newer from 'gulp-newer';
-import objectAssign from 'object-assign';
+var gulp = require('gulp');
+var newer = require('gulp-newer');
+var objectAssign = require('object-assign');
 
-import browserify from 'browserify';
-import source from 'vinyl-source-stream';
-import buffer from 'vinyl-buffer';
-import sourcemaps from 'gulp-sourcemaps';
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
+var sourcemaps = require('gulp-sourcemaps');
 
-import sass from 'gulp-ruby-sass';
+var sass = require('gulp-ruby-sass');
 
-import pngmin from 'gulp-pngmin';
-import shell from 'gulp-shell';
-import babel from 'gulp-babel';
+var pngmin = require('gulp-pngmin');
+var shell = require('gulp-shell');
+var babel = require('gulp-babel');
 
-import util from 'gulp-util';
-import jade from 'gulp-jade';
-import runSequence from 'run-sequence';
+var util = require('gulp-util');
+var jade = require('gulp-jade');
+var runSequence = require('run-sequence');
 
 var config = {
 	env: 'development',
@@ -125,7 +125,7 @@ gulp.task('pngmin', function () {
 	);
 });
 
-gulp.task('runElectron', function(){
+gulp.task('ele', function(){
   return gulp.src('*.js', { read: false })
   .pipe(shell([
     'npm start'
@@ -140,14 +140,11 @@ gulp.task('compile', function(done){
   return runSequence(
   	['copy', 'babel', 'sass', 'jade', 'pngmin'],
     'browserify',
-    'runElectron',
     done
   );
 });
 
-gulp.task('default', [
-	'compile'
-], function(){
+gulp.task('watch', function(done){
 	gulp.watch([
 		config.src.client.views + '/*.jsx',
 		config.src.client.views + '/**/*.jsx',
@@ -180,6 +177,13 @@ gulp.task('default', [
 		config.src.client.root + '/credential.js',
 		config.src.client.images + '/*.png'
 	], ['copy']);
+});
+
+gulp.task('default', function(){
+	return runSequence(
+		'compile',
+		'watch'
+	);
 });
 
 gulp.task('build', [

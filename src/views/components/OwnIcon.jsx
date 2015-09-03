@@ -1,5 +1,6 @@
 import React from 'react';
-import UserState from 'src/classes/UserState'
+import UserState from 'src/classes/UserState';
+import config from 'src/views/config';
 
 const userState = new UserState({ navigator: window.navigator });
 
@@ -29,7 +30,7 @@ class OwnIcon extends React.Component {
 					_self.setState({
 						imgURL: imgURL
 					});
-				}, 3000);
+				}, config.snapInterval);
 			};
 		});
 	}

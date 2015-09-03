@@ -20,9 +20,3 @@ server.use(bodyParser.urlencoded({
 server.use(routes);
 
 module.exports = server;
-
-if(process.argv[2] === 'server.js'){
-  server.listen(4444, function() {
-  	console.log('Express server listening on port 4444');
-  });
-}
