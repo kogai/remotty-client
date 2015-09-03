@@ -14,6 +14,8 @@ class SnapShot extends EventEmitter{
   constructor(){
     super();
     this.intervalID = null;
+    this.mediaStream = null;
+    this.video = null;
   }
 
   /**
@@ -26,10 +28,14 @@ class SnapShot extends EventEmitter{
 
       window.navigator.getUserMedia(
     		{ video: true },
-    		(localMediaStream) => {
+    		(mediaStream) => {
         	const video = document.createElement('video');
-        	const videoURL = window.URL.createObjectURL(localMediaStream);
+        	const videoURL = window.URL.createObjectURL(mediaStream);
         	video.src = videoURL;
+
+          this.mediaStream = mediaStream;
+          this.video = video;
+
           done(null, video);
         },
     		(error) => done(error)
@@ -41,13 +47,6 @@ class SnapShot extends EventEmitter{
     }
     return Promise.promisify(_allowVideo)();
 	}
-
-  /**
-  * 動画を破棄する
-  */
-  disAllowVideo(){
-
-  }
 
 	/**
 	* 動画から画像を生成する
@@ -107,6 +106,7 @@ class SnapShot extends EventEmitter{
     video.stop();
     clearInterval(this.intervalID);
     this.removeListener(TAKE_SNAP_EVENT, this.emitableCallback);
+    this.mediaStream.stop();
   }
 
 }
