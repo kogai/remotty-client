@@ -96,7 +96,7 @@ class SnapShot extends EventEmitter{
     this.intervalID = setInterval(()=>{
 			const imgURL = this.takePhoto(video);
       this.emit(TAKE_SNAP, imgURL);
-    }, config.snapInterval);
+    }, config.SNAP_INTERVAL);
   }
 
   /**
@@ -138,9 +138,8 @@ snapshot.on('deregister', callback);
 
 */
 
-function factory(opts = {}){
-  return new SnapShot(opts);
-}
 
 export default SnapShot;
-export { snapshot }
+export function snapshot (opts = {}) {
+  return new SnapShot(opts);
+}
