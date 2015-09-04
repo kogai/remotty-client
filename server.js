@@ -1,12 +1,15 @@
 "use strict";
 
-var express = require('express');
 var path = require('path');
+
+var express = require('express');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var server = express();
 var routes = require('./global/routes');
+var relation = require('./global/models/relation')();
+
+var server = express();
 
 server.set('views', path.join(__dirname, 'public'));
 server.set('view engine', 'jade');

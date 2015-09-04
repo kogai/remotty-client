@@ -6,9 +6,5 @@ export default function() {
 		through: 'team_mates',
 		foreignKey: 'user_id'
 	});
-	Team.hasMany(User, {
-		as: 'Teammate',
-		through: 'team_mates',
-		foreignKey: 'team_id'
-	});
+	Team.hasMany(User);
 };
