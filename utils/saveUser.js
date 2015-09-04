@@ -1,21 +1,11 @@
 import uuid from 'uuid';
-import UserModel from './src/models/User';
+import User from './src/models/User';
+import Team from './src/models/Team';
+
 const users = ['atom-employee', 'electron-employee', 'github-employee'];
 
-users.forEach((user) => {
-  let newUser = new UserModel({
-    name: user,
-    mail: user + '@test.io',
-    password: user + 'istestaccount',
-    verifyToken: uuid.v1(),
-    isVerify: false,
-    teams: ['github.inc']
-  });
+User.sync({ force: true });
+Team.sync({ force: true });
 
-  newUser.save((err) => {
-    if(err){
-      return console.log(err);
-    }
-    console.log("saved.");
-  });
+users.forEach((user) => {
 });

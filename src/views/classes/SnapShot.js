@@ -88,15 +88,19 @@ class SnapShot extends EventEmitter{
   * 定期的な撮影を開始
   */
   start(video, emitableCallback){
+
+    function _snapImmidiately(){
+			const imgURL = this.takePhoto(video);
+      this.emit(TAKE_SNAP_EVENT, imgURL);
+    }
+
     video.play();
 
     this.emitableCallback = emitableCallback;
     this.on(TAKE_SNAP_EVENT, this.emitableCallback);
 
-    this.intervalID = setInterval(()=>{
-			const imgURL = this.takePhoto(video);
-      this.emit(TAKE_SNAP_EVENT, imgURL);
-    }, config.SNAP_INTERVAL);
+    setTimeout(_snapImmidiately.bind(this), config.SNAP_IMMEDIATELY);
+    this.intervalID = setInterval(_snapImmidiately.bind(this), config.SNAP_INTERVAL);
   }
 
   /**

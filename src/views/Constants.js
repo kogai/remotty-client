@@ -14,4 +14,6 @@ export default keymirror({
 ,	GET_TEAMS: null
 ,	GET_TEAMS_SUCCESS: null
 ,	GET_TEAMS_ERROR: null
+
+,	UPDATE_IMG_URL: null
 });

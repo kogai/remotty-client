@@ -3,6 +3,8 @@ import React from 'react';
 import UserState from 'src/views/classes/UserState';
 import { snapshot } from 'src/views/classes/SnapShot';
 import config from 'src/views/config';
+import { updatePhoto, getMe } from 'src/views/actions/OwnIconAction';
+import OwnIconStore from 'src/views/stores/OwnIconStore';
 
 const userState = new UserState({ navigator: window.navigator });
 
@@ -10,20 +12,30 @@ class OwnIcon extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			imgURL: '/images/icon.png'
+			imgURL: OwnIconStore.getState().imgURL
 		};
+		this._updateImgURL = this._updateImgURL.bind(this);
 	}
 
 	componentDidMount(){
 		snapshot
 		.allowVideo()
 		.then((video)=>{
-			snapshot.start(video, ()=>{
-				/**
-				* ここにActionへの伝播処理を書く
-				*/
-				console.log('snapshot taked.');
+			snapshot.start(video, (imgURL)=>{
+
+				console.log(imgURL);
+
+				this._updateImgURL();
+				updatePhoto(imgURL);
 			})
+		});
+	}
+
+	_updateImgURL(){
+		OwnIconStore.listen(()=>{
+			this.setState({
+				imgURL: OwnIconStore.getState().imgURL
+			});
 		});
 	}
 
