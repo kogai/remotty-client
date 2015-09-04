@@ -1,12 +1,20 @@
-import mongoose from 'mongoose';
-import { mongodb } from '../credential.js';
+import Sequelize from 'sequelize';
+import connection from './connection.js';
 
-let db = mongoose.createConnection(mongodb);
+var User = connection.define('user', {
+		name: {
+			type: Sequelize.STRING,
+			field: 'name',
+		},
+		user_id: {
+			type: Sequelize.INTEGER,
+			field: 'userId'
+		}
+	},
+	{
+		underscored: true,
+		freezeTableName: true
+	}
+);
 
-let TeamSchema = new mongoose.Schema({
-	name: String,
-	members: Array
-});
-
-let TeamModel = db.model('team', TeamSchema);
-export default TeamModel = {};
+export default User;

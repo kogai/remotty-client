@@ -1,3 +1,3 @@
 export default {
-  SNAP_INTERVAL: 1000 * 60 * 5
+  SNAP_INTERVAL: 1000 * 60
 };
