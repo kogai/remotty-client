@@ -8,24 +8,32 @@ import uuid from 'uuid';
 class Handler extends React.Component {
 	constructor(props){
 		super(props);
+		this.state = {
+			height: 0,
+			width: 0
+		};
 	}
 
 	componentDidMount(){
-		/*
-		if(store.get('own_token')){
+		window.addEventListener('load', ()=>{
+			this.setState({
+				height: window.innerHeight,
+				width: window.innerWidth
+			});
+		});
 
-			return;
-		}
-		// ユーザー作成処理
-		const ownToken = uuid.v1();
-		store.set('own_token', own_token);
-		*/
+		window.addEventListener('resize', ()=>{
+			this.setState({
+				height: window.innerHeight,
+				width: window.innerWidth
+			});
+		});
 	}
 
 	render(){
 		let style = {
-			height: window.innerHeight,
-			width: window.innerWidth
+			height: this.state.height,
+			width: this.state.width
 		};
 		return (
 			<div style={ style } >
