@@ -30,7 +30,7 @@ var MemberStore = assign({}, EventEmitter.prototype, {
 Dispatcher.register(function(action){
 	switch(action.type){
 		case Constants.GET_MEMBERS:
-			_members = null;
+			_members = [];
 			return MemberStore.emitChange();
 
 		case Constants.GET_MEMBERS_SUCCESS:
@@ -38,7 +38,7 @@ Dispatcher.register(function(action){
 			return MemberStore.emitChange();
 
 		case Constants.GET_MEMBERS_ERROR:
-			_members = null;
+			_members = [];
 			return MemberStore.emitChange();
 	}
 });

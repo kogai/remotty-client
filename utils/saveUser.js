@@ -1,11 +1,11 @@
 import uuid from 'uuid';
-import User from './src/models/User';
-import Team from './src/models/Team';
+import Member from 'src/models/Member';
 
-const users = ['atom-employee', 'electron-employee', 'github-employee'];
+const members = ['atom-employee', 'electron-employee', 'github-employee'];
 
-User.sync({ force: true });
-Team.sync({ force: true });
-
-users.forEach((user) => {
+members.forEach((member)=>{
+  Member.create({
+    name: member,
+    own_token: uuid.v1()
+  });
 });

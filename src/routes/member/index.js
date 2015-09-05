@@ -16,10 +16,7 @@ export function all(req, res){
     }
   })
   .then((members)=>{
-    if(members.length > 0){
-      return res.status(200).send(members);
-    }
-    res.status(404).send(notFond);
+    return res.status(200).send(members);
   })
   .catch((error)=>{
     res.status(500).send(error);

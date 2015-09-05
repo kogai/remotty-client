@@ -13,7 +13,7 @@ class MemberList extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			members: []
+			members: MemberStore.getState().members
 		};
 	}
 
