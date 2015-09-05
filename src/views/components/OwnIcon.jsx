@@ -14,7 +14,8 @@ class OwnIcon extends React.Component {
 		this.state = {
 			imgURL: OwnIconStore.getState().imgURL
 		};
-		this._updateImgURL = this._updateImgURL.bind(this);
+		this.keepUpdateImgURL = this.keepUpdateImgURL.bind(this);
+		this.updateImgURL = this.updateImgURL.bind(this);
 	}
 
 	componentDidMount(){
@@ -22,16 +23,13 @@ class OwnIcon extends React.Component {
 		.allowVideo()
 		.then((video)=>{
 			snapshot.start(video, (imgURL)=>{
-
-				console.log(imgURL);
-
-				this._updateImgURL();
+				this.keepUpdateImgURL();
 				updatePhoto(imgURL);
 			})
 		});
 	}
 
-	_updateImgURL(){
+	keepUpdateImgURL(){
 		OwnIconStore.listen(()=>{
 			this.setState({
 				imgURL: OwnIconStore.getState().imgURL
@@ -39,9 +37,14 @@ class OwnIcon extends React.Component {
 		});
 	}
 
+	updateImgURL(){
+		const imgURL = snapshot.takePhoto(snapshot.video);
+		updatePhoto(imgURL);
+	}
+
 	render(){
 		return (
-			<li className="members__list__icon--active icon">
+			<li className="members__list__icon--active icon" onClick={ this.updateImgURL }>
         <img src={ this.state.imgURL } className="icon__img" />
         <span className="icon__name">{ "this.props.name" }</span>
       </li>
