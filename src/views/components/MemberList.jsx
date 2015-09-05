@@ -18,12 +18,12 @@ class MemberList extends React.Component {
 	}
 
 	componentDidMount(){
-		// MemberAction.getMembers();
-		// MemberStore.listen(()=>{
-		// 	return this.setState({
-		// 		members: MemberStore.getState().members
-		// 	});
-		// });
+		MemberAction.getMembers();
+		MemberStore.listen(()=>{
+			return this.setState({
+				members: MemberStore.getState().members
+			});
+		});
 	}
 
 	render(){
@@ -31,7 +31,7 @@ class MemberList extends React.Component {
       return (
         <MemberIcon
           name={ member.name }
-          img={ member.iconFileName }
+          img={ member.imgsrc }
           key={ "membersComponent" + index } />
       );
     });

@@ -1,5 +1,5 @@
 import request from 'superagent';
-
+import store from 'store';
 import Dispatcher from 'src/views/Dispatcher.jsx';
 import Constants from 'src/views/Constants';
 
@@ -9,10 +9,7 @@ export default {
 			type: Constants.GET_MEMBERS
 		});
 
-		request.get('/member/all')
-		.query({
-			team_id: 1
-		})
+		request.get('/member/all/' + store.get('own_token'))
 		.end((error, retrieved) => {
 			if(error){
 				return Dispatcher.dispatch({

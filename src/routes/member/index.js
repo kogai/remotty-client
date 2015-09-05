@@ -1,12 +1,33 @@
 import Member from '../../models/Member';
 import { log } from '../../classes/Logger';
 
-export function get(req, res) {
+const notFond = {
+  message: 'account not found'
+};
+
+export function all(req, res){
   const own_token = req.params.own_token;
 
-  const notFond = {
-    message: 'account not found'
-  };
+  Member.findAll({
+    where: {
+      own_token: {
+        $ne: own_token
+      }
+    }
+  })
+  .then((members)=>{
+    if(members.length > 0){
+      return res.status(200).send(members);
+    }
+    res.status(404).send(notFond);
+  })
+  .catch((error)=>{
+    res.status(500).send(error);
+  });
+}
+
+export function get(req, res) {
+  const own_token = req.params.own_token;
 
   if(own_token === undefined){
     return res.status(404).send(notFond);
@@ -44,6 +65,9 @@ export function post(req, res) {
     res.status(200).send(created);
   })
   .catch((error)=>{
+
+    log.info(error);
+
     res.status(500).send(error);
   });
 }
