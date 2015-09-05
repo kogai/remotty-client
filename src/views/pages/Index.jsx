@@ -22,7 +22,6 @@ class Index extends React.Component {
 		return (
 		<div className="container">
 			<section className="members">
-				<Team />
 				<MemberList />
 			</section>
 			<Map />

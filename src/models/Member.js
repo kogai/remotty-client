@@ -9,6 +9,10 @@ var Member = connection.define('member', {
 		imgsrc: {
 			type: Sequelize.STRING,
 			field: 'imgsrc'
+		},
+		own_token: {
+			type: Sequelize.STRING(255),
+			field: 'own_token'
 		}
 	},
 	{

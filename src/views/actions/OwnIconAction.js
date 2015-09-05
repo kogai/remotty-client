@@ -3,7 +3,7 @@ import request from 'superagent';
 import Dispatcher from 'src/views/Dispatcher.jsx';
 import Constants from 'src/views/Constants';
 
-import request from 'superagent';
+import { account } from 'src/views/classes/Account';
 
 export function updatePhoto (imgURL){
 	Dispatcher.dispatch({
@@ -17,14 +17,35 @@ export function getOwnName(own_token){
 		type: Constants.GET_ME
 	});
 
-	request.get('/me/' + own_token)
+	request
+		.get('/member/' + own_token)
 		.end((error, retrieved) => {
+			if(retrieved.status === 404){
+				// アカウントが見つからなかったら新規作成
+				return account.create()
+					.then((newMember)=>{
+						Dispatcher.dispatch({
+							type: Constants.GET_ME_SUCCESS,
+							body: newMember
+						});
+					})
+					.catch((error)=>{
+						Dispatcher.dispatch({
+							type: Constants.GET_ME_ERROR,
+							body: error
+						});
+					});
+			}
+
 			if(error){
 				return Dispatcher.dispatch({
 					type: Constants.GET_ME_ERROR,
 					body: error
 				});
 			}
+
+			console.log(retrieved);
+
 			Dispatcher.dispatch({
 				type: Constants.GET_ME_SUCCESS,
 				body: retrieved.body

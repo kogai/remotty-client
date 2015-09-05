@@ -1,14 +1,12 @@
-'use strict';
+import { Router } from 'express';
 
-import express from 'express';
 import area from './area';
-import member from './member';
-import me from './me';
+import * as member from './member';
 
-var router = express.Router();
+var router = Router();
 
 router.get('/area', area.get);
-router.get('/member/:member_id', member.get);
-router.get('/me/:own_token', me.get);
+router.get('/member/:own_token', member.get);
+router.post('/member/:own_token', member.post);
 
 export default router;

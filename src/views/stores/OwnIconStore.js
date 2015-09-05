@@ -12,7 +12,7 @@ const CHANGE_EVENT = 'change';
 var _imgURL = '/images/icon.png';
 var _name = '名前が未入力です';
 
-var TeamStore = assign({}, EventEmitter.prototype, {
+var OwnIconStore = assign({}, EventEmitter.prototype, {
 	getState(){
 		return {
 			imgURL: _imgURL,
@@ -30,16 +30,17 @@ var TeamStore = assign({}, EventEmitter.prototype, {
 });
 
 Dispatcher.register(function(action){
+
 	switch(action.type){
 		case Constants.UPDATE_IMG_URL:
 			_imgURL = action.body;
-			TeamStore.emitChange();
+			OwnIconStore.emitChange();
 
 		case Constants.GET_ME_SUCCESS:
-			_imgURL = action.body.imgURL;
+			// _imgURL = action.body.imgURL;
 			_name = action.body.name;
-			TeamStore.emitChange();
+			OwnIconStore.emitChange();
 	}
 });
 
-export default TeamStore;
+export default OwnIconStore;
