@@ -18,16 +18,12 @@ class MemberList extends React.Component {
 	}
 
 	componentDidMount(){
-		MemberAction.getMembers();
-		MemberStore.listen(()=>{
-			return this.setState({
-				members: MemberStore.getState().members
-			});
-		});
-	}
-
-	componentWillUnmount(){
-		console.log("componentWillUnmount in MemberList");
+		// MemberAction.getMembers();
+		// MemberStore.listen(()=>{
+		// 	return this.setState({
+		// 		members: MemberStore.getState().members
+		// 	});
+		// });
 	}
 
 	render(){
@@ -36,8 +32,7 @@ class MemberList extends React.Component {
         <MemberIcon
           name={ member.name }
           img={ member.iconFileName }
-          key={ "membersComponent" + index }
-        />
+          key={ "membersComponent" + index } />
       );
     });
 

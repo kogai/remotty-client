@@ -1,9 +1,7 @@
-import Promise from 'bluebird';
+import request from 'superagent';
 
 import Dispatcher from 'src/views/Dispatcher.jsx';
 import Constants from 'src/views/Constants';
-
-import request from 'superagent';
 
 export default {
 	getMembers(){

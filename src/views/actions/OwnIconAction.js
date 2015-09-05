@@ -1,4 +1,4 @@
-import Promise from 'bluebird';
+import request from 'superagent';
 
 import Dispatcher from 'src/views/Dispatcher.jsx';
 import Constants from 'src/views/Constants';
@@ -12,6 +12,22 @@ export function updatePhoto (imgURL){
 	});
 }
 
-export function getMe(){
-	
+export function getOwnName(own_token){
+	Dispatcher.dispatch({
+		type: Constants.GET_ME
+	});
+
+	request.get('/me/' + own_token)
+		.end((error, retrieved) => {
+			if(error){
+				return Dispatcher.dispatch({
+					type: Constants.GET_ME_ERROR,
+					body: error
+				});
+			}
+			Dispatcher.dispatch({
+				type: Constants.GET_ME_SUCCESS,
+				body: retrieved.body
+			});
+		});
 }

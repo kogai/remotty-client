@@ -6,9 +6,13 @@ var Team = connection.define('team', {
 			type: Sequelize.STRING,
 			field: 'name',
 		},
-		member_id: {
-			type: Sequelize.INTEGER,
-			field: 'member_id'
+		own_token: {
+			type: Sequelize.STRING(255),
+			field: 'own_token',
+		},
+		uuid: {
+			type: Sequelize.UUID,
+			field: 'uuid'
 		}
 	}
 );

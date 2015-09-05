@@ -3,14 +3,14 @@ import { geocoderKey } from '../../credential.js';
 import util from 'util';
 
 export default (req, res) => {
-  let latlong = req.query;
+  const latlong = req.query;
 
   let options = {
 	  key: geocoderKey,
 	  result_type: ['administrative_area_level_1']
   };
 
-  let japaneseLang = 'ja';
+  const japaneseLang = 'ja';
   if(req.headers['accept-language'].match(japaneseLang)){
     options.language = japaneseLang;
   }

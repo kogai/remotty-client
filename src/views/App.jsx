@@ -32,5 +32,5 @@ var router = Router.create({
 });
 
 router.run(function(Root, state){
-	React.render(<Root params={ state.params } />, document.body);
+	React.render(<Root params={ state.params } />, document.getElementById('root'));
 });

@@ -7,10 +7,12 @@ export default (req, res) => {
 
   console.log(req.query);
   console.log(member_id);
+  // res.status(200).send(member_id);
 
+  // /*
   if(member_id === 'all'){
-    Member.find({
-
+    Member.findAll({
+      where: team_id
     }, function(error, users){
       if(error){
         res.status(500).send(error);
@@ -18,4 +20,5 @@ export default (req, res) => {
       res.status(200).send(users);
     });
   }
+  // */
 };
