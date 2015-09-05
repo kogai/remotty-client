@@ -2,11 +2,11 @@
 
 import express from 'express';
 import area from './area';
-import user from './user';
+import member from './member';
 
 var router = express.Router();
 
 router.get('/area', area.get);
-router.get('/user/:user_id', user.get);
+router.get('/member/:member_id', member.get);
 
 export default router;

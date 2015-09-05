@@ -1,10 +1,15 @@
-import User from './User';
+import Member from './Member';
 import Team from './Team';
 
+
 export default function() {
-	User.belongsToMany(Team, {
+
+
+	Member.belongsToMany(Team, {
 		through: 'team_mates',
-		foreignKey: 'user_id'
+		foreignKey: 'member_id'
 	});
-	Team.hasMany(User);
+
+	Team.hasMany(Member);
+
 };

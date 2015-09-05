@@ -72,6 +72,7 @@
     "rebuild": "./node_modules/.bin/electron-rebuild",
     "install": "HOME=~/.electron-gyp npm install -S",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "connect": "heroku pg:psql",
     "sandbox": "./node_modules/.bin/babel-node sandbox.js"
   },
   "repository": {

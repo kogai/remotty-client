@@ -1,20 +1,16 @@
 import Sequelize from 'sequelize';
 import connection from './connection.js';
 
-var User = connection.define('user', {
+var Team = connection.define('team', {
 		name: {
 			type: Sequelize.STRING,
 			field: 'name',
 		},
-		user_id: {
+		member_id: {
 			type: Sequelize.INTEGER,
-			field: 'userId'
+			field: 'member_id'
 		}
-	},
-	{
-		underscored: true,
-		freezeTableName: true
 	}
 );
 
-export default User;
+export default Team;

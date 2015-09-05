@@ -11,7 +11,7 @@ export default {
 			type: Constants.GET_MEMBERS
 		});
 
-		request.get('/user/all')
+		request.get('/member/all')
 		.query({
 			team_id: 1
 		})
