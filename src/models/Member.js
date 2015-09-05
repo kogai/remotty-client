@@ -5,10 +5,12 @@ var Member = connection.define('member', {
 		name: {
 			type: Sequelize.STRING,
 			field: 'name',
+			defaultValue: '名前が未入力です'
 		},
 		imgsrc: {
 			type: Sequelize.STRING,
-			field: 'imgsrc'
+			field: 'imgsrc',
+			defaultValue: '/images/icon.png'
 		},
 		own_token: {
 			type: Sequelize.STRING(255),

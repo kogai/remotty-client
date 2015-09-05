@@ -9,8 +9,8 @@ import assign from 'object-assign';
 const CHANGE_EVENT = 'change';
 
 // stores
-var _imgURL = '/images/icon.png';
-var _name = '名前が未入力です';
+var _imgURL = '';
+var _name = '';
 
 var OwnIconStore = assign({}, EventEmitter.prototype, {
 	getState(){
@@ -30,16 +30,16 @@ var OwnIconStore = assign({}, EventEmitter.prototype, {
 });
 
 Dispatcher.register(function(action){
-
 	switch(action.type){
 		case Constants.UPDATE_IMG_URL:
 			_imgURL = action.body;
 			OwnIconStore.emitChange();
+			break;
 
 		case Constants.GET_ME_SUCCESS:
-			// _imgURL = action.body.imgURL;
 			_name = action.body.name;
 			OwnIconStore.emitChange();
+			break;
 	}
 });
 

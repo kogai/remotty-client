@@ -38,6 +38,9 @@ export function post(req, res) {
     own_token: own_token
   })
   .then((created)=>{
+
+    log.info(created);
+
     res.status(200).send(created);
   })
   .catch((error)=>{

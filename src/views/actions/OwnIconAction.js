@@ -44,8 +44,6 @@ export function getOwnName(own_token){
 				});
 			}
 
-			console.log(retrieved);
-
 			Dispatcher.dispatch({
 				type: Constants.GET_ME_SUCCESS,
 				body: retrieved.body

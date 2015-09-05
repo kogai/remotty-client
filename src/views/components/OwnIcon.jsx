@@ -12,13 +12,9 @@ const userState = new UserState({ navigator: window.navigator });
 class OwnIcon extends React.Component {
 	constructor(props){
 		super(props);
-		this.state = {
-			imgURL: OwnIconStore.getState().imgURL,
-			name: OwnIconStore.getState().name
-		};
+		this.state = OwnIconStore.getState();
 
-		this.keepUpdateImgURL = this.keepUpdateImgURL.bind(this);
-		this.listenUpdateOwnName = this.listenUpdateOwnName.bind(this);
+		this.listenStore = this.listenStore.bind(this);
 		this.updateImgURL = this.updateImgURL.bind(this);
 	}
 
@@ -27,28 +23,17 @@ class OwnIcon extends React.Component {
 		.allowVideo()
 		.then((video)=>{
 			snapshot.start(video, (imgURL)=>{
-				this.keepUpdateImgURL();
 				updatePhoto(imgURL);
 			})
 		});
 
-		this.listenUpdateOwnName();
+		this.listenStore();
 		getOwnName(store.get('own_token'));
 	}
 
-	listenUpdateOwnName(){
+	listenStore(){
 		OwnIconStore.listen(()=>{
-			this.setState({
-				name: OwnIconStore.getState().name
-			});
-		});
-	}
-
-	keepUpdateImgURL(){
-		OwnIconStore.listen(()=>{
-			this.setState({
-				imgURL: OwnIconStore.getState().imgURL
-			});
+			this.setState(OwnIconStore.getState());
 		});
 	}
 
