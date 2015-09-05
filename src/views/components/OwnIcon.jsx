@@ -44,9 +44,9 @@ class OwnIcon extends React.Component {
 
 	render(){
 		return (
-			<li className="members__list__icon--active icon" onClick={ this.updateImgURL }>
-        <img src={ this.state.imgURL } className="icon__img" />
-        <span className="icon__name">{ this.state.name }</span>
+			<li className="members__list__icon--active icon">
+        <img src={ this.state.imgURL } className="icon__img" onClick={ this.updateImgURL } />
+				<span className="icon__name">{ this.state.name }</span>
       </li>
 		);
 	}

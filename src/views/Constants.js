@@ -15,6 +15,9 @@ export default keymirror({
 ,	GET_ME_SUCCESS: null
 ,	GET_ME_ERROR: null
 
+,	PUT_ME_SUCCESS: null
+,	PUT_ME_ERROR: null
+
 ,	GET_TEAMS: null
 ,	GET_TEAMS_SUCCESS: null
 ,	GET_TEAMS_ERROR: null

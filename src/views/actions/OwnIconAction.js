@@ -1,4 +1,5 @@
 import request from 'superagent';
+import store from 'store';
 
 import Dispatcher from 'src/views/Dispatcher.jsx';
 import Constants from 'src/views/Constants';
@@ -10,6 +11,24 @@ export function updatePhoto (imgURL){
 		type: Constants.UPDATE_IMG_URL,
 		body: imgURL
 	});
+}
+
+export function updateProfile(update){
+	request
+		.put('/member/' + store.get('own_token'))
+		.send(update)
+		.end((error, retrieved)=>{
+			if(error){
+				return Dispatcher.dispatch({
+					type: Constants.PUT_ME_ERROR,
+					body: error
+				});
+			}
+			return Dispatcher.dispatch({
+				type: Constants.PUT_ME_SUCCESS,
+				body: update
+			});
+		});
 }
 
 export function getOwnName(own_token){

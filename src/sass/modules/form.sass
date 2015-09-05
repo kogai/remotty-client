@@ -1,0 +1,47 @@
+.form
+  opacity: 1
+  height: auto
+  +anim(0.5s)
+
+.form--hidden
+  @extend .form
+  opacity: 0
+  height: 0
+  margin: 0
+
+
+.form__item
+  margin-top: 10px
+  &:first-child
+    margin-top: 0
+
+.button
+  box-sizing: border-box
+  text-decoration: none
+  padding: 10px
+  border: none
+  border-radius: 3px
+  display: block
+  width: 100%
+  font-size: 14px
+
+.button--disabled
+  @extend .button
+  background-color: $color__weak-glay--thin
+  color: $color__weak-glay--dark
+  &:hover
+    cursor: not-allowed
+
+.button--active
+  @extend .button
+  background-color: $color__main
+  color: #fff
+
+.input
+  box-sizing: border-box
+  border: none
+  padding: 10px
+  border-radius: 3px
+  display: block
+  line-height: 1
+  width: 100%

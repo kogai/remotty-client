@@ -59,15 +59,30 @@ export function post(req, res) {
     own_token: own_token
   })
   .then((created)=>{
-
     log.info(created);
-
     res.status(200).send(created);
   })
   .catch((error)=>{
-
     log.info(error);
+    res.status(500).send(error);
+  });
+}
 
+export function put(req, res){
+  const own_token = req.params.own_token;
+  const update = req.body;
+
+  const conditions = {
+    where: {
+      own_token: own_token
+    }
+  };
+  Member.update(update, conditions)
+  .then(()=>{
+    res.status(200).send();
+  })
+  .catch((error)=>{
+    log.info(error);
     res.status(500).send(error);
   });
 }

@@ -9,14 +9,16 @@ import assign from 'object-assign';
 const CHANGE_EVENT = 'change';
 
 // stores
-var _imgURL = '';
-var _name = '';
+let _imgURL = '';
+let _name = '';
+let _isNameDefault = false;
 
 var OwnIconStore = assign({}, EventEmitter.prototype, {
 	getState(){
 		return {
 			imgURL: _imgURL,
-			name: _name
+			name: _name,
+			isNameDefault: _isNameDefault
 		};
 	},
 
@@ -38,6 +40,16 @@ Dispatcher.register(function(action){
 
 		case Constants.GET_ME_SUCCESS:
 			_name = action.body.name;
+			if(action.body.name === '名前が未入力です'){
+				_isNameDefault = true;
+			}
+			OwnIconStore.emitChange();
+			break;
+
+		case Constants.PUT_ME_SUCCESS:
+			_isNameDefault = false;
+			_name = action.body.name;
+
 			OwnIconStore.emitChange();
 			break;
 	}

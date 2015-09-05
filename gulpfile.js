@@ -5,6 +5,7 @@ var newer = require('gulp-newer');
 var objectAssign = require('object-assign');
 
 var browserify = require('browserify');
+var watchify = require('watchify');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var sourcemaps = require('gulp-sourcemaps');
@@ -78,20 +79,14 @@ gulp.task('sass', function(){
 });
 
 gulp.task('browserify', function(){
-	var opt = objectAssign(
-		{},
-		{
-			entries: [
-				config.src.client.views + '/App.jsx'
-			],
-			extensions: ['.js'],
-			debug: true
-		}
-	);
+	var opt = objectAssign({}, {
+		entries: [ config.src.client.views + '/App.jsx' ],
+		extensions: ['.js', '.jsx'],
+		debug: true
+	});
 
-	var b;
+  var b = watchify(browserify(opt));
 
-	b = browserify(opt);
 	return b.transform('babelify')
 	.transform('reactify')
 	.bundle()
