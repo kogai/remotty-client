@@ -85,9 +85,10 @@ gulp.task('browserify', function(){
 		debug: true
 	});
 
-  var b = watchify(browserify(opt));
+  // var b = watchify(browserify(opt));
 
-	return b.transform('babelify')
+	return browserify(opt)
+	.transform('babelify')
 	.transform('reactify')
 	.bundle()
 	.pipe(source('bundle.js'))

@@ -5,7 +5,7 @@ import UserState from 'src/views/classes/UserState';
 import { snapshot } from 'src/views/classes/SnapShot';
 import config from 'src/views/config';
 import { updatePhoto, getOwnName } from 'src/views/actions/OwnIconAction';
-import { connect } from 'src/views/actions/SocketAction';
+import { socketConnect, socketUpdate } from 'src/views/actions/SocketAction';
 import OwnIconStore from 'src/views/stores/OwnIconStore';
 
 const userState = new UserState({ navigator: window.navigator });
@@ -24,13 +24,14 @@ class OwnIcon extends React.Component {
 		.allowVideo()
 		.then((video)=>{
 			snapshot.start(video, (imgURL)=>{
+				const imgBlob = imgURL.replace(/^.*,/, '');
 				updatePhoto(imgURL);
+				socketUpdate(imgBlob);
 			});
 		});
-
 		this.listenStore();
 		getOwnName(store.get('own_token'));
-		connect();
+		socketConnect();
 	}
 
 	listenStore(){
@@ -41,7 +42,9 @@ class OwnIcon extends React.Component {
 
 	updateImgURL(){
 		const imgURL = snapshot.takePhoto(snapshot.video);
+		const imgBlob = imgURL.replace(/^.*,/, '');
 		updatePhoto(imgURL);
+		socketUpdate(imgBlob);
 	}
 
 	render(){

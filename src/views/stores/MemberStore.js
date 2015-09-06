@@ -1,10 +1,10 @@
-"use babel";
+import { EventEmitter } from 'events';
+import assign from 'object-assign';
+import _ from 'lodash';
+import Base64 from 'js-base64';
 
 import Dispatcher from 'src/views/Dispatcher.jsx';
 import Constants from 'src/views/Constants';
-
-import { EventEmitter } from 'events';
-import assign from 'object-assign';
 
 const CHANGE_EVENT = 'change';
 
@@ -27,6 +27,17 @@ var MemberStore = assign({}, EventEmitter.prototype, {
 	}
 });
 
+function updateSomeOne(data, currentMembers){
+	let updatedMembers = currentMembers.map((member)=>{
+		if(member.own_token === data.own_token){
+			member.imgsrc = "data:image/jpeg;base64, " + data.imgBlob;
+		}
+		return member;
+	});
+
+	return updatedMembers;
+}
+
 Dispatcher.register(function(action){
 	switch(action.type){
 		case Constants.GET_MEMBERS:
@@ -39,6 +50,10 @@ Dispatcher.register(function(action){
 
 		case Constants.GET_MEMBERS_ERROR:
 			_members = [];
+			return MemberStore.emitChange();
+
+		case Constants.UPDATE_SOMEONE_IMG:
+			_members = updateSomeOne(action.body, _members);
 			return MemberStore.emitChange();
 	}
 });
